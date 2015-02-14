@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet library="css" name="primos_lavacar_style.css" />
+	<title>Primo's Car</title>
+</h:head>
+<h:body styleClass="primoscar-font-default">
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="center">
+			<div align="center" class="login-header">
+				SISTEMA PRIMO'S CAR
+			</div>
+			<h:form id="frmLogin">
+				<div align="center">
+					<p:panel style="width:390px; margin-top:40px; margin-bottom:40px;">
+						<p:messages id="messages" showSummary="true" showDetail="true"
+							autoUpdate="true" />
+
+						<p:focus for="username" />
+						<p:panelGrid columns="2">
+
+							<h:outputText value="Usuário:" style="font-weight:bold;" />
+							<p:inputText id="username" autocomplete="off" required="true"
+								requiredMessage="O campo usuário é obrigatório." />
+
+							<h:outputText value="Senha:" style="font-weight:bold;" />
+							<p:password feedback="false" rendered="true"
+								requiredMessage="O campo senha é obrigatório" id="passwd" />
+								
+						</p:panelGrid>
+
+						<f:facet name="footer">
+							<div align="right">
+								<p:commandLink action="/pages/esqueci_senha" immediate="true" ajax="false" 
+									style="text-decoration: none; margin-right: 5px; font-size: 11px;">
+									Esqueci a senha
+								</p:commandLink>
+								<p:commandButton type="submit" value="Acessar" ajax="false" />
+							</div>
+						</f:facet>
+					</p:panel>
+				</div>
+			</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
+
+</h:body>
+</html>
