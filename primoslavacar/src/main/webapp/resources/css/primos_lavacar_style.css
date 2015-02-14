@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+
+.primoscar-font-default {
+	font-size: 13px;
+}
+
+.login-identification {
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+
+.login-header {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 20px;
+}
+
+.title-header {
+	padding-top: 5px;
+	font-size: 20px;
+}
+
+.header-title-page {
+	padding-top: 10px;
+	padding-bottom: 15px;
+	font-size: 16px;
+}
+
+.centralizar {
+	text-align: center;
+}
+
+.width95 {
+	width: 95%;
+}
+
+.width80 {
+	width: 80%;
+}
+
+.width70 {
+	width: 70%;
+}
+
+.width60 {
+	width: 60%;
+}
+
+.width50 {
+	width: 50%;
+}
+
+.width40 {
+	width: 40%;
+}
+
+.width30 {
+	width: 30%;
+}
+
+.width25 {
+	width: 25%;
+}
+
+.width20 {
+	width: 20%;
+}
+
+.width10 {
+	width: 10%;
+}
+
+.width5 {
+	width: 5%;
+}
+
+.table-vertical-align {
+	vertical-align: top;
+	padding-top: 22px !important;
+	padding-left: 20px !important;
+}
+
+.valignTop>tbody>tr>td {
+	vertical-align: top !important;
+}
+
+.ui-panelgrid {
+	border-collapse: separate !important;
+}
+
+.ui-panelgrid tr td {
+	border: none !important;
+}
+
+.div-content {
+	margin: 8px;
+}
+
+.ui-growl-item-container {
+	border: 2px solid #aed0ea !important;
+}
+
+.ui-datatable-odd {
+	background: none repeat scroll 0 0 #F2F5F9 !important;
+}
