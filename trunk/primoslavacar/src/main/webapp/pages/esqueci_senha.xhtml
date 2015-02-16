@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet library="css" name="primos_lavacar_style.css" />
+	<title>Primo's Car</title>
+</h:head>
+<h:body styleClass="primoscar-font-default">
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="center">
+			<div align="center" class="login-header">
+				SISTEMA PRIMO'S LAVA CAR
+			</div>
+			<h:form id="frmLogin">
+				<div align="center">
+					<p:panel style="width:490px; margin-top:40px; margin-bottom:40px;">
+						<p:messages id="messages" showSummary="true" showDetail="true"
+							autoUpdate="true" />
+
+						<p:focus for="username" />
+						<p:panelGrid columns="2">
+
+							<h:outputText value="Usuário:" style="font-weight:bold;" />
+							<p:inputText id="username" autocomplete="off" required="true"
+								requiredMessage="O campo usuário é obrigatório."
+								value="#{loginManagedBean.funcionario.usuario}" />
+
+							<h:outputText value="E-mail:" style="font-weight:bold;" />
+							<p:inputText id="email" autocomplete="off" required="true"
+								requiredMessage="O campo e-mail é obrigatório."
+								value="#{loginManagedBean.funcionario.email}" />
+
+							<h:outputText value="Senha:" style="font-weight:bold;" />
+							<p:password id="senha1" feedback="true" required="true"
+								match="senha2" promptLabel="Insira a senha" weakLabel="Fraco"
+								goodLabel="Médio" strongLabel="Forte" inline="true"
+								validatorMessage="As senhas não são iguais."
+								requiredMessage="O campo senha é obrigatório"
+								value="#{loginManagedBean.funcionario.senha}" />
+
+							<h:outputText value="Re-senha" style="font-weight:bold;" />
+							<p:password id="senha2" required="true" feedback="false"
+								requiredMessage="O campo re-senha é obrigatório."
+								value="#{loginManagedBean.funcionario.senha}" />
+
+						</p:panelGrid>
+
+						<f:facet name="footer">
+							<div align="right">
+								<p:commandLink action="/pages/login" immediate="true" ajax="false" 
+									style="text-decoration: none; margin-right: 5px;">
+									Voltar
+								</p:commandLink>
+								<p:commandButton type="submit" value="Acessar" update="frmLogin"
+									actionListener="#{loginManagedBean.alterarSenha}" ajax="false" />
+							</div>
+						</f:facet>
+					</p:panel>
+				</div>
+			</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
+</h:body>
+</html>
