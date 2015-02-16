@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:form id="frmMenu">
+
+	<p:menu style="width:95%;">
+		<p:submenu label="SISTEMA">
+			<p:menuitem value="#{loginManagedBean.funcionario.nome}"
+				disabled="true" style="font-weight: bold;" />
+			<p:separator />
+			<p:menuitem value="Sair" action="#{loginManagedBean.logout}"
+				ajax="false" />
+			<p:separator />
+			<p:separator style="margin-bottom: 5px;" />
+		</p:submenu>
+		<p:submenu label="HOME">
+			<p:menuitem value="Dashboard"
+				url="/pages/system/dashboard.jsf" />
+		</p:submenu>
+
+		<p:submenu label="FUNCIONÁRIO">
+			<p:menuitem value="Gerenciar Funcionário"
+				url="/pages/system/gerenciar_funcionario.jsf"
+				rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN'}" />
+		</p:submenu>
+
+		<p:submenu label="CLIENTE"
+			rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN' or loginManagedBean.funcionario.role eq 'ROLE_INSTRUTOR'}">
+			<p:menuitem value="Gerenciar Clientes"
+				url="/pages/system/gerenciar_temas.jsf" />
+		</p:submenu>
+		
+		<p:submenu label="SERVIÇOS"
+			rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN' or loginManagedBean.funcionario.role eq 'ROLE_INSTRUTOR'}">
+			<p:menuitem value="Gerenciar Serviços"
+				url="/pages/system/gerenciar_temas.jsf" />
+		</p:submenu>
+
+		<p:submenu label="GERENCIAMENTO"
+			rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN' or loginManagedBean.funcionario.role eq 'ROLE_INSTRUTOR'}">
+			<p:menuitem value="Contas a Pagar"
+				url="/pages/system/gerenciar_agenda.jsf" />
+			
+			<p:menuitem value="Fluxo de Caixa"
+				url="/pages/system/gerenciar_agenda.jsf" />
+		</p:submenu>
+
+
+	</p:menu>
+</h:form>
+
+</html>

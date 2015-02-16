@@ -15,9 +15,8 @@
 	<p:layout fullPage="true">
 
 		<p:layoutUnit position="center">
-			<div align="center" class="login-header">
-				SISTEMA PRIMO'S CAR
-			</div>
+			<div align="center" class="login-header">SISTEMA PRIMO'S LAVA
+				CAR</div>
 			<h:form id="frmLogin">
 				<div align="center">
 					<p:panel style="width:390px; margin-top:40px; margin-bottom:40px;">
@@ -29,21 +28,25 @@
 
 							<h:outputText value="Usuário:" style="font-weight:bold;" />
 							<p:inputText id="username" autocomplete="off" required="true"
-								requiredMessage="O campo usuário é obrigatório." />
+								requiredMessage="O campo usuário é obrigatório."
+								value="#{loginManagedBean.usuario.usuario}" />
 
 							<h:outputText value="Senha:" style="font-weight:bold;" />
 							<p:password feedback="false" rendered="true"
-								requiredMessage="O campo senha é obrigatório" id="passwd" />
-								
+								requiredMessage="O campo senha é obrigatório" id="passwd"
+								value="#{loginManagedBean.usuario.senha}" />
+
 						</p:panelGrid>
 
 						<f:facet name="footer">
 							<div align="right">
-								<p:commandLink action="/pages/esqueci_senha" immediate="true" ajax="false" 
+								<p:commandLink action="/pages/esqueci_senha" immediate="true"
+									ajax="false"
 									style="text-decoration: none; margin-right: 5px; font-size: 11px;">
 									Esqueci a senha
 								</p:commandLink>
-								<p:commandButton type="submit" value="Acessar" ajax="false" />
+								<p:commandButton type="submit" value="Acessar" ajax="false"
+									action="#{loginManagedBean.logar}" />
 							</div>
 						</f:facet>
 					</p:panel>
