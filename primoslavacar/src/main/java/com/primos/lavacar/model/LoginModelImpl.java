@@ -7,8 +7,8 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.primos.lavacar.bean.FuncionarioDTO;
 import com.primos.lavacar.utils.ConexaoBaseDados;
+import com.primos.lavacar.view.FuncionarioViewBean;
 
 /**
  * Classe de implementação de métodos de conexão com a base de dados para
@@ -42,7 +42,7 @@ public class LoginModelImpl implements LoginModel {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public FuncionarioDTO logar(String nomeUsuario, String senha)
+	public FuncionarioViewBean logar(String nomeUsuario, String senha)
 			throws ClassNotFoundException, SQLException {
 
 		LOG.info("Chamando logar");
@@ -50,7 +50,7 @@ public class LoginModelImpl implements LoginModel {
 		PreparedStatement pstmt = null;
 		Connection conn = null;
 		ResultSet rs = null;
-		FuncionarioDTO funcionario = null;
+		FuncionarioViewBean funcionario = null;
 
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(SELECT_FUNCIONARIO_LOGIN);
@@ -59,7 +59,7 @@ public class LoginModelImpl implements LoginModel {
 		rs = pstmt.executeQuery();
 
 		if (rs.next()) {
-			funcionario = new FuncionarioDTO();
+			funcionario = new FuncionarioViewBean();
 
 			funcionario.setPerfilId(rs.getInt("id"));
 			funcionario.setDescricao(rs.getString("descricao"));
@@ -89,7 +89,7 @@ public class LoginModelImpl implements LoginModel {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public String alterarSenha(FuncionarioDTO funcionario)
+	public String alterarSenha(FuncionarioViewBean funcionario)
 			throws ClassNotFoundException, SQLException {
 
 		LOG.info("Chamando alterar senha");

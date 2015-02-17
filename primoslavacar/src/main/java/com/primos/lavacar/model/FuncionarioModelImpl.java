@@ -9,9 +9,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.primos.lavacar.bean.FuncionarioDTO;
-import com.primos.lavacar.bean.PerfilDTO;
 import com.primos.lavacar.utils.ConexaoBaseDados;
+import com.primos.lavacar.view.FuncionarioViewBean;
+import com.primos.lavacar.view.PerfilViewBean;
 
 /**
  * Classe que implementa os métodos de gerenciamento dos funcionários
@@ -69,7 +69,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioDTO> listarFuncionarios()
+	public List<FuncionarioViewBean> listarFuncionarios()
 			throws ClassNotFoundException, SQLException {
 
 		LOG.info("Chamando método listarFuncionarios");
@@ -78,14 +78,14 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		List<FuncionarioDTO> listaFuncionarios = new ArrayList<FuncionarioDTO>();
+		List<FuncionarioViewBean> listaFuncionarios = new ArrayList<FuncionarioViewBean>();
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(SELECT_TODOS_FUNCIONARIO);
 		rs = pstmt.executeQuery();
-		FuncionarioDTO func = null;
+		FuncionarioViewBean func = null;
 
 		while (rs.next()) {
-			func = new FuncionarioDTO();
+			func = new FuncionarioViewBean();
 			func.setCpf(rs.getInt("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
@@ -116,7 +116,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<PerfilDTO> listarPerfis() throws SQLException,
+	public List<PerfilViewBean> listarPerfis() throws SQLException,
 			ClassNotFoundException {
 
 		LOG.info("Chamando método listarPerfis");
@@ -124,14 +124,14 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		List<PerfilDTO> listaPerfis = new ArrayList<PerfilDTO>();
+		List<PerfilViewBean> listaPerfis = new ArrayList<PerfilViewBean>();
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(SELECT_TODOS_PERFIS);
 		rs = pstmt.executeQuery();
-		PerfilDTO perfil = null;
+		PerfilViewBean perfil = null;
 
 		while (rs.next()) {
-			perfil = new PerfilDTO();
+			perfil = new PerfilViewBean();
 			perfil.setPerfilId(rs.getInt("id"));
 			perfil.setDescricao(rs.getString("descricao"));
 			perfil.setRole(rs.getString("rolename"));
@@ -155,7 +155,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void gravar(FuncionarioDTO funcionario) throws SQLException,
+	public void gravar(FuncionarioViewBean funcionario) throws SQLException,
 			ClassNotFoundException {
 
 		LOG.info("Chamando método gravar Funcionario");
@@ -197,14 +197,14 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public FuncionarioDTO buscarFuncionarioPorMatricula(Integer matricula)
+	public FuncionarioViewBean buscarFuncionarioPorMatricula(Integer matricula)
 			throws SQLException, ClassNotFoundException {
 
 		LOG.info("Chamando método buscar Funcionario por matricula");
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		FuncionarioDTO func = null;
+		FuncionarioViewBean func = null;
 
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(SELECT_FUNCIONARIO_POR_MATRICULA);
@@ -212,7 +212,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		rs = pstmt.executeQuery();
 
 		if (rs.next()) {
-			func = new FuncionarioDTO();
+			func = new FuncionarioViewBean();
 			func.setCpf(rs.getInt("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
@@ -268,7 +268,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void alterar(FuncionarioDTO funcionario, Integer cpfAntigo)
+	public void alterar(FuncionarioViewBean funcionario, Integer cpfAntigo)
 			throws SQLException, ClassNotFoundException {
 
 		LOG.info("Chamando método alterar Funcionario");
@@ -309,7 +309,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioDTO> listarGerentes() throws SQLException,
+	public List<FuncionarioViewBean> listarGerentes() throws SQLException,
 			ClassNotFoundException {
 		LOG.info("Chamando método listarGerentes");
 
@@ -317,14 +317,14 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		List<FuncionarioDTO> listaFuncionarios = new ArrayList<FuncionarioDTO>();
+		List<FuncionarioViewBean> listaFuncionarios = new ArrayList<FuncionarioViewBean>();
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(SELECT_GERENTES);
 		rs = pstmt.executeQuery();
-		FuncionarioDTO func = null;
+		FuncionarioViewBean func = null;
 
 		while (rs.next()) {
-			func = new FuncionarioDTO();
+			func = new FuncionarioViewBean();
 			func.setCpf(rs.getInt("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
@@ -355,7 +355,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioDTO> listarColaboradoresSemEquipes()
+	public List<FuncionarioViewBean> listarColaboradoresSemEquipes()
 			throws SQLException, ClassNotFoundException {
 		LOG.info("Chamando método listarColaboradoresSemEquipes");
 
@@ -363,14 +363,14 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		List<FuncionarioDTO> listaFuncionarios = new ArrayList<FuncionarioDTO>();
+		List<FuncionarioViewBean> listaFuncionarios = new ArrayList<FuncionarioViewBean>();
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(SELECT_COLABORADORES_SEM_EQUIPES);
 		rs = pstmt.executeQuery();
-		FuncionarioDTO func = null;
+		FuncionarioViewBean func = null;
 
 		while (rs.next()) {
-			func = new FuncionarioDTO();
+			func = new FuncionarioViewBean();
 			func.setCpf(rs.getInt("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
@@ -436,13 +436,13 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioDTO> listarColaboradorPorGerente(Integer matricula)
+	public List<FuncionarioViewBean> listarColaboradorPorGerente(Integer matricula)
 			throws SQLException, ClassNotFoundException {
 
 		LOG.info("Chamando método listar Colaboradores por Gerente");
 
-		List<FuncionarioDTO> listaColaboradores = new ArrayList<FuncionarioDTO>();
-		FuncionarioDTO func = null;
+		List<FuncionarioViewBean> listaColaboradores = new ArrayList<FuncionarioViewBean>();
+		FuncionarioViewBean func = null;
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -455,7 +455,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 
 		while (rs.next()) {
 
-			func = new FuncionarioDTO();
+			func = new FuncionarioViewBean();
 			func.setCpf(rs.getInt("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
@@ -505,7 +505,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioDTO> listarColaboradores() throws SQLException,
+	public List<FuncionarioViewBean> listarColaboradores() throws SQLException,
 			ClassNotFoundException {
 
 		LOG.info("Chamando método listarColaboradores");
@@ -514,14 +514,14 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		List<FuncionarioDTO> listaFuncionarios = new ArrayList<FuncionarioDTO>();
+		List<FuncionarioViewBean> listaFuncionarios = new ArrayList<FuncionarioViewBean>();
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(SELECT_COLABORADORES);
 		rs = pstmt.executeQuery();
-		FuncionarioDTO func = null;
+		FuncionarioViewBean func = null;
 
 		while (rs.next()) {
-			func = new FuncionarioDTO();
+			func = new FuncionarioViewBean();
 			func.setCpf(rs.getInt("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
