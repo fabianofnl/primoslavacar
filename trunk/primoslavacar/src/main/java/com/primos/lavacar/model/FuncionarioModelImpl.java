@@ -32,18 +32,18 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	private static final String INSERT_USUARIO_FUNCIONARIO = "INSERT INTO usuario (usuario, senha, perfilId) "
 			+ "VALUES (?, MD5(?), ?)";
 
-	private static final String INSERT_FUNCIONARIO = "INSERT INTO funcionario (matricula, nome, funcao, email, usuario) "
-			+ "VALUES (?, ?, ?, ?, ?)";
+	private static final String INSERT_FUNCIONARIO = "INSERT INTO funcionario (cpf, nome, email, usuario) "
+			+ "VALUES (?, ?, ?, ?)";
 
 	private static final String SELECT_FUNCIONARIO_POR_MATRICULA = "SELECT * FROM funcionario f, usuario u, perfil p "
 			+ "WHERE f.usuario = u.usuario AND u.perfilId = p.id AND f.matricula = ?";
 
-	private static final String INATIVAR_FUNCIONARIO_POR_MATRICULA = "UPDATE funcionario SET status = 'Inativo' WHERE matricula = ?";
+	private static final String INATIVAR_FUNCIONARIO_POR_MATRICULA = "UPDATE funcionario SET status = 'Inativo' WHERE cpf = ?";
 
 	private static final String UPDATE_USUARIO_FUNCIONARIO = "UPDATE usuario SET perfilid = ? WHERE usuario = ?";
 
-	private static final String UPDATE_FUNCIONARIO = "UPDATE funcionario SET matricula = ?, nome = ?, funcao = ?, email = ?, "
-			+ "status = ? WHERE matricula = ?";
+	private static final String UPDATE_FUNCIONARIO = "UPDATE funcionario SET cpf = ?, nome = ?, email = ?, "
+			+ "status = ? WHERE cpf = ?";
 
 	private static final String SELECT_GERENTES = "SELECT * FROM funcionario f, usuario u, perfil p "
 			+ "WHERE f.usuario = u.usuario AND u.perfilId = p.id AND p.descricao ILIKE 'Gerente' AND f.status ILIKE 'Ativo'";
@@ -86,7 +86,8 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 
 		while (rs.next()) {
 			func = new FuncionarioViewBean();
-			func.setCpf(rs.getInt("cpf"));
+			func.setCpf(rs.getLong("cpf"));
+			func.setCpfAntigo(rs.getLong("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
 			func.setStatus(rs.getString("status"));
@@ -177,10 +178,10 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		pstmt.execute();
 
 		pstmt = conn.prepareStatement(INSERT_FUNCIONARIO);
-		pstmt.setInt(1, funcionario.getCpf());
+		pstmt.setLong(1, funcionario.getCpf());
 		pstmt.setString(2, funcionario.getNome());
-		pstmt.setString(4, funcionario.getEmail());
-		pstmt.setString(5, funcionario.getUsuario());
+		pstmt.setString(3, funcionario.getEmail());
+		pstmt.setString(4, funcionario.getUsuario());
 		pstmt.execute();
 
 		if (pstmt != null)
@@ -213,7 +214,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 
 		if (rs.next()) {
 			func = new FuncionarioViewBean();
-			func.setCpf(rs.getInt("cpf"));
+			func.setCpf(rs.getLong("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
 			func.setStatus(rs.getString("status"));
@@ -242,8 +243,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void inativar(Integer matricula) throws SQLException,
-			ClassNotFoundException {
+	public void inativar(Long cpf) throws SQLException, ClassNotFoundException {
 
 		LOG.info("Chamando método inativar Funcionario por matricula");
 		Connection conn = null;
@@ -251,7 +251,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(INATIVAR_FUNCIONARIO_POR_MATRICULA);
-		pstmt.setInt(1, matricula);
+		pstmt.setLong(1, cpf);
 		pstmt.execute();
 
 		if (pstmt != null)
@@ -268,10 +268,13 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void alterar(FuncionarioViewBean funcionario, Integer cpfAntigo)
+	public void alterar(FuncionarioViewBean funcionario, Long cpfAntigo)
 			throws SQLException, ClassNotFoundException {
 
 		LOG.info("Chamando método alterar Funcionario");
+
+		LOG.info("CPF: " + funcionario.getCpf() + ", antigo: " + cpfAntigo);
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -287,13 +290,13 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		pstmt.setInt(1, funcionario.getPerfilId());
 		pstmt.setString(2, funcionario.getUsuario());
 		pstmt.execute();
-		
+
 		pstmt = conn.prepareStatement(UPDATE_FUNCIONARIO);
-		pstmt.setInt(1, funcionario.getCpf());
+		pstmt.setLong(1, funcionario.getCpf());
 		pstmt.setString(2, funcionario.getNome());
-		pstmt.setString(4, funcionario.getEmail());
-		pstmt.setString(5, funcionario.getStatus());
-		pstmt.setInt(6, cpfAntigo);
+		pstmt.setString(3, funcionario.getEmail());
+		pstmt.setString(4, funcionario.getStatus());
+		pstmt.setLong(5, cpfAntigo);
 		pstmt.execute();
 
 		if (pstmt != null)
@@ -325,7 +328,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 
 		while (rs.next()) {
 			func = new FuncionarioViewBean();
-			func.setCpf(rs.getInt("cpf"));
+			func.setCpf(rs.getLong("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
 			func.setStatus(rs.getString("status"));
@@ -371,7 +374,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 
 		while (rs.next()) {
 			func = new FuncionarioViewBean();
-			func.setCpf(rs.getInt("cpf"));
+			func.setCpf(rs.getLong("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
 			func.setStatus(rs.getString("status"));
@@ -436,8 +439,8 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioViewBean> listarColaboradorPorGerente(Integer matricula)
-			throws SQLException, ClassNotFoundException {
+	public List<FuncionarioViewBean> listarColaboradorPorGerente(
+			Integer matricula) throws SQLException, ClassNotFoundException {
 
 		LOG.info("Chamando método listar Colaboradores por Gerente");
 
@@ -456,7 +459,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		while (rs.next()) {
 
 			func = new FuncionarioViewBean();
-			func.setCpf(rs.getInt("cpf"));
+			func.setCpf(rs.getLong("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
 			func.setStatus(rs.getString("status"));
@@ -479,7 +482,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void removerColaborador(Integer matricula) throws SQLException,
+	public void removerColaborador(Long cpf) throws SQLException,
 			ClassNotFoundException {
 
 		LOG.info("Chamando método remover Colaborador por matricula");
@@ -488,7 +491,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(REMOVER_COLABORADOR_POR_MATRICULA);
-		pstmt.setInt(1, matricula);
+		pstmt.setLong(1, cpf);
 		pstmt.execute();
 
 		if (pstmt != null)
@@ -522,7 +525,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 
 		while (rs.next()) {
 			func = new FuncionarioViewBean();
-			func.setCpf(rs.getInt("cpf"));
+			func.setCpf(rs.getLong("cpf"));
 			func.setNome(rs.getString("nome"));
 			func.setEmail(rs.getString("email"));
 			func.setStatus(rs.getString("status"));

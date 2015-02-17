@@ -62,7 +62,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void inativar(Integer matricula) throws SQLException,
+	public void inativar(Long  matricula) throws SQLException,
 			ClassNotFoundException;
 
 	/**
@@ -73,7 +73,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void alterar(FuncionarioViewBean funcionario, Integer matriculaAntiga)
+	public void alterar(FuncionarioViewBean funcionario, Long matriculaAntiga)
 			throws SQLException, ClassNotFoundException;
 
 	/**
@@ -126,7 +126,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void removerColaborador(Integer matricula) throws SQLException,
+	public void removerColaborador(Long matricula) throws SQLException,
 			ClassNotFoundException;
 
 	/**

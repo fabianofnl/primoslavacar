@@ -64,7 +64,7 @@ public class LoginModelImpl implements LoginModel {
 			funcionario.setPerfilId(rs.getInt("id"));
 			funcionario.setDescricao(rs.getString("descricao"));
 			funcionario.setRole(rs.getString("roleName"));
-			funcionario.setCpf(rs.getInt("cpf"));
+			funcionario.setCpf(rs.getLong("cpf"));
 			funcionario.setNome(rs.getString("nome"));
 			funcionario.setUsuario(rs.getString("usuario"));
 			funcionario.setSenha(rs.getString("senha"));
