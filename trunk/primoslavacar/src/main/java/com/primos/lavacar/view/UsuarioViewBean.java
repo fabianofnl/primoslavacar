@@ -1,4 +1,4 @@
-package com.primos.lavacar.bean;
+package com.primos.lavacar.view;
 
 import java.io.Serializable;
 
@@ -9,14 +9,14 @@ import java.io.Serializable;
  * @author Claudemir
  * 
  */
-public class UsuarioDTO extends PerfilDTO implements Serializable {
+public class UsuarioViewBean extends PerfilViewBean implements Serializable {
 
 	private static final long serialVersionUID = -1003024660686069159L;
 
 	private String usuario;
 	private String senha;
 
-	public UsuarioDTO() {
+	public UsuarioViewBean() {
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class UsuarioDTO extends PerfilDTO implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UsuarioDTO other = (UsuarioDTO) obj;
+		UsuarioViewBean other = (UsuarioViewBean) obj;
 		if (senha == null) {
 			if (other.senha != null)
 				return false;

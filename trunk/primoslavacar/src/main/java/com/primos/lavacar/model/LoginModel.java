@@ -2,7 +2,7 @@ package com.primos.lavacar.model;
 
 import java.sql.SQLException;
 
-import com.primos.lavacar.bean.FuncionarioDTO;
+import com.primos.lavacar.view.FuncionarioViewBean;
 
 /**
  * Interface de conexão com a base de dados para autenticação de usuários do
@@ -22,7 +22,7 @@ public interface LoginModel {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public FuncionarioDTO logar(String nomeUsuario, String senha)
+	public FuncionarioViewBean logar(String nomeUsuario, String senha)
 			throws ClassNotFoundException, SQLException;
 
 	/**
@@ -33,7 +33,7 @@ public interface LoginModel {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public String alterarSenha(FuncionarioDTO funcionario)
+	public String alterarSenha(FuncionarioViewBean funcionario)
 			throws ClassNotFoundException, SQLException;
 
 }

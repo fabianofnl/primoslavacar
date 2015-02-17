@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Claudemir
  * 
  */
-public class FuncionarioDTO extends UsuarioDTO implements Serializable {
+public class FuncionarioViewBean extends UsuarioViewBean implements Serializable {
 
 	private static final long serialVersionUID = 3576824392171045517L;
 
@@ -18,7 +18,7 @@ public class FuncionarioDTO extends UsuarioDTO implements Serializable {
 	private String email;
 	private String status;
 
-	public FuncionarioDTO() {
+	public FuncionarioViewBean() {
 	}
 
 	/**

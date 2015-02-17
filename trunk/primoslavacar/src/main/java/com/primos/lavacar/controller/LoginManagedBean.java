@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import com.primos.lavacar.bean.FuncionarioDTO;
-import com.primos.lavacar.bean.UsuarioDTO;
 import com.primos.lavacar.model.LoginModel;
 import com.primos.lavacar.model.LoginModelImpl;
+import com.primos.lavacar.view.FuncionarioViewBean;
+import com.primos.lavacar.view.UsuarioViewBean;
 
 /**
  * Classe com responsabilidade de verificar, autenticar e remover autenticação
@@ -31,8 +31,8 @@ public class LoginManagedBean implements Serializable {
 	private static final long serialVersionUID = 1672291696958745459L;
 	private static final Logger LOG = Logger.getLogger(LoginManagedBean.class);
 
-	private UsuarioDTO usuario = new UsuarioDTO();
-	private FuncionarioDTO funcionario = new FuncionarioDTO();
+	private UsuarioViewBean usuario = new UsuarioViewBean();
+	private FuncionarioViewBean funcionario = new FuncionarioViewBean();
 
 	private LoginModel loginModel = new LoginModelImpl();
 
@@ -126,23 +126,23 @@ public class LoginManagedBean implements Serializable {
 	 * "Esqueci a senha"
 	 */
 	public void limparSessao() {
-		usuario = new UsuarioDTO();
-		funcionario = new FuncionarioDTO();
+		usuario = new UsuarioViewBean();
+		funcionario = new FuncionarioViewBean();
 	}
 
-	public UsuarioDTO getUsuario() {
+	public UsuarioViewBean getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(UsuarioDTO usuario) {
+	public void setUsuario(UsuarioViewBean usuario) {
 		this.usuario = usuario;
 	}
 
-	public FuncionarioDTO getFuncionario() {
+	public FuncionarioViewBean getFuncionario() {
 		return funcionario;
 	}
 
-	public void setFuncionario(FuncionarioDTO funcionario) {
+	public void setFuncionario(FuncionarioViewBean funcionario) {
 		this.funcionario = funcionario;
 	}
 }

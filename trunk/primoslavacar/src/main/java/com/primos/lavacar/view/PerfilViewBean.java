@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author Claudemir
  * 
  */
-public class PerfilDTO implements Serializable {
+public class PerfilViewBean implements Serializable {
 
 	private static final long serialVersionUID = -456106320628876359L;
 
@@ -18,7 +18,7 @@ public class PerfilDTO implements Serializable {
 	private String descricao;
 	private String role;
 
-	public PerfilDTO() {
+	public PerfilViewBean() {
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class PerfilDTO implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PerfilDTO other = (PerfilDTO) obj;
+		PerfilViewBean other = (PerfilViewBean) obj;
 		if (descricao == null) {
 			if (other.descricao != null)
 				return false;

@@ -13,10 +13,10 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.log4j.Logger;
 
-import com.primos.lavacar.bean.FuncionarioDTO;
-import com.primos.lavacar.bean.PerfilDTO;
 import com.primos.lavacar.model.FuncionarioModel;
 import com.primos.lavacar.model.FuncionarioModelImpl;
+import com.primos.lavacar.view.FuncionarioViewBean;
+import com.primos.lavacar.view.PerfilViewBean;
 
 /**
  * Classe responsável pelo controle e gerenciamento dos Funcionários
@@ -32,10 +32,10 @@ public class FuncionarioManagedBean implements Serializable {
 	private static final Logger LOG = Logger
 			.getLogger(FuncionarioManagedBean.class);
 
-	private List<FuncionarioDTO> listaFuncionarios = new ArrayList<FuncionarioDTO>();
-	private List<PerfilDTO> listaPerfis = new ArrayList<PerfilDTO>();
-	private FuncionarioDTO funcionarioSelecionado = new FuncionarioDTO();
-	private FuncionarioDTO funcionarioNovo = new FuncionarioDTO();
+	private List<FuncionarioViewBean> listaFuncionarios = new ArrayList<FuncionarioViewBean>();
+	private List<PerfilViewBean> listaPerfis = new ArrayList<PerfilViewBean>();
+	private FuncionarioViewBean funcionarioSelecionado = new FuncionarioViewBean();
+	private FuncionarioViewBean funcionarioNovo = new FuncionarioViewBean();
 
 	private FuncionarioModel funcionarioModel = new FuncionarioModelImpl();
 
@@ -223,45 +223,45 @@ public class FuncionarioManagedBean implements Serializable {
 	 * de um funcionario
 	 */
 	private void limparSessao() {
-		funcionarioNovo = new FuncionarioDTO();
-		funcionarioSelecionado = new FuncionarioDTO();
+		funcionarioNovo = new FuncionarioViewBean();
+		funcionarioSelecionado = new FuncionarioViewBean();
 
 	}
 
-	public List<FuncionarioDTO> getListaFuncionarios() {
+	public List<FuncionarioViewBean> getListaFuncionarios() {
 		return listaFuncionarios;
 	}
 
-	public void setListaFuncionarios(List<FuncionarioDTO> listaFuncionarios) {
+	public void setListaFuncionarios(List<FuncionarioViewBean> listaFuncionarios) {
 		this.listaFuncionarios = listaFuncionarios;
 	}
 
-	public FuncionarioDTO getFuncionarioSelecionado() {
+	public FuncionarioViewBean getFuncionarioSelecionado() {
 		LOG.info("GET funcionario selecionado: "
 				+ funcionarioSelecionado.getNome());
 		funcionarioSelecionado.setCpfAntigo(funcionarioSelecionado.getCpf());
 		return funcionarioSelecionado;
 	}
 
-	public void setFuncionarioSelecionado(FuncionarioDTO funcionarioSelecionado) {
+	public void setFuncionarioSelecionado(FuncionarioViewBean funcionarioSelecionado) {
 		LOG.info("SET funcionario selecionado: "
 				+ funcionarioSelecionado.getNome());
 		this.funcionarioSelecionado = funcionarioSelecionado;
 	}
 
-	public FuncionarioDTO getFuncionarioNovo() {
+	public FuncionarioViewBean getFuncionarioNovo() {
 		return funcionarioNovo;
 	}
 
-	public void setFuncionarioNovo(FuncionarioDTO funcionarioNovo) {
+	public void setFuncionarioNovo(FuncionarioViewBean funcionarioNovo) {
 		this.funcionarioNovo = funcionarioNovo;
 	}
 
-	public List<PerfilDTO> getListaPerfis() {
+	public List<PerfilViewBean> getListaPerfis() {
 		return listaPerfis;
 	}
 
-	public void setListaPerfis(List<PerfilDTO> listaPerfis) {
+	public void setListaPerfis(List<PerfilViewBean> listaPerfis) {
 		this.listaPerfis = listaPerfis;
 	}
 }

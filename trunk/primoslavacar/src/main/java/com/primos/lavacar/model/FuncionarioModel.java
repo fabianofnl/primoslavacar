@@ -3,8 +3,8 @@ package com.primos.lavacar.model;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.primos.lavacar.bean.FuncionarioDTO;
-import com.primos.lavacar.bean.PerfilDTO;
+import com.primos.lavacar.view.FuncionarioViewBean;
+import com.primos.lavacar.view.PerfilViewBean;
 
 /**
  * Interface que possui os métodos de gerenciamento dos funcionários
@@ -21,7 +21,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioDTO> listarFuncionarios() throws SQLException,
+	public List<FuncionarioViewBean> listarFuncionarios() throws SQLException,
 			ClassNotFoundException;
 
 	/**
@@ -31,7 +31,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<PerfilDTO> listarPerfis() throws SQLException,
+	public List<PerfilViewBean> listarPerfis() throws SQLException,
 			ClassNotFoundException;
 
 	/**
@@ -41,7 +41,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void gravar(FuncionarioDTO funcionario) throws SQLException,
+	public void gravar(FuncionarioViewBean funcionario) throws SQLException,
 			ClassNotFoundException;
 
 	/**
@@ -52,7 +52,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public FuncionarioDTO buscarFuncionarioPorMatricula(Integer matricula)
+	public FuncionarioViewBean buscarFuncionarioPorMatricula(Integer matricula)
 			throws SQLException, ClassNotFoundException;
 
 	/**
@@ -73,7 +73,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void alterar(FuncionarioDTO funcionario, Integer matriculaAntiga)
+	public void alterar(FuncionarioViewBean funcionario, Integer matriculaAntiga)
 			throws SQLException, ClassNotFoundException;
 
 	/**
@@ -83,7 +83,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioDTO> listarGerentes() throws SQLException,
+	public List<FuncionarioViewBean> listarGerentes() throws SQLException,
 			ClassNotFoundException;
 
 	/**
@@ -93,7 +93,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioDTO> listarColaboradoresSemEquipes()
+	public List<FuncionarioViewBean> listarColaboradoresSemEquipes()
 			throws SQLException, ClassNotFoundException;
 
 	/**
@@ -116,7 +116,7 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioDTO> listarColaboradorPorGerente(Integer matricula)
+	public List<FuncionarioViewBean> listarColaboradorPorGerente(Integer matricula)
 			throws SQLException, ClassNotFoundException;
 
 	/**
@@ -137,6 +137,6 @@ public interface FuncionarioModel {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public List<FuncionarioDTO> listarColaboradores() throws SQLException,
+	public List<FuncionarioViewBean> listarColaboradores() throws SQLException,
 			ClassNotFoundException;
 }
