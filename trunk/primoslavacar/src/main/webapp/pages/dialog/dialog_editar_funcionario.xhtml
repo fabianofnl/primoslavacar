@@ -14,45 +14,40 @@
 		<p:panelGrid>
 			<p:row>
 				<p:column>
-					<h:outputLabel value="Matrícula:" />
+					<h:outputLabel value="CPF:" />
 				</p:column>
 				<p:column>
-					<p:inputText required="true" requiredMessage="O campo matrícula é obrigatório."
-						value="#{funcionarioManagedBean.funcionarioSelecionado.matricula}" />
+					<p:inputMask required="true" converter="cpfConverter"
+						requiredMessage="Campo CPF é obrigatório."
+						value="#{funcionarioManagedBean.funcionarioNovo.cpf}"
+						mask="999.999.999-99" maxlength="14" />
 				</p:column>
 				<p:column>
 					<h:outputLabel value="Nome:" />
 				</p:column>
 				<p:column>
-					<p:inputText required="true" requiredMessage="O campo nome é obrigatório."
+					<p:inputText required="true"
+						requiredMessage="O campo nome é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioSelecionado.nome}" />
 				</p:column>
 			</p:row>
 
 			<p:row>
 				<p:column>
-					<h:outputLabel value="Função:" />
-				</p:column>
-				<p:column>
-					<p:inputText required="true" requiredMessage="O campo função é obrigatório."
-						value="#{funcionarioManagedBean.funcionarioSelecionado.funcao}" />
-				</p:column>
-				<p:column>
 					<h:outputLabel value="E-mail:" />
 				</p:column>
 				<p:column>
-					<p:inputText required="true" requiredMessage="O campo e-mail é obrigatório."
+					<p:inputText required="true"
+						requiredMessage="O campo e-mail é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioSelecionado.email}" />
 				</p:column>
-			</p:row>
 
-			<p:row>
 				<p:column>
 					<h:outputLabel value="Perfil:" />
 				</p:column>
 				<p:column>
-					<p:selectOneMenu id="selectPerfil" effectDuration="100" required="true"
-						requiredMessage="O campo perfil é obrigatório."
+					<p:selectOneMenu id="selectPerfil" effectDuration="100"
+						required="true" requiredMessage="O campo perfil é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioSelecionado.perfilId}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{funcionarioManagedBean.listaPerfis}"
@@ -60,6 +55,11 @@
 							itemValue="#{per.perfilId}" />
 					</p:selectOneMenu>
 				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column></p:column>
+				<p:column></p:column>
 				<p:column>
 					<h:outputLabel value="Status:" />
 				</p:column>

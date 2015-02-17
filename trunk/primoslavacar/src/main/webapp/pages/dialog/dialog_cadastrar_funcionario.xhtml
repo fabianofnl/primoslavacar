@@ -14,52 +14,50 @@
 		<p:panelGrid>
 			<p:row>
 				<p:column>
-					<h:outputLabel value="Matrícula:" />
+					<h:outputLabel value="CPF:" />
 				</p:column>
 				<p:column>
-					<p:inputText required="true" requiredMessage="Campo matrícula é obrigatório."
-						value="#{funcionarioManagedBean.funcionarioNovo.matricula}" />
+					<p:inputMask required="true"
+						converter="cpfConverter"
+						requiredMessage="Campo CPF é obrigatório."
+						value="#{funcionarioManagedBean.funcionarioNovo.cpf}"
+						mask="999.999.999-99" maxlength="14" />
 				</p:column>
 				<p:column>
 					<h:outputLabel value="Nome:" />
 				</p:column>
 				<p:column>
-					<p:inputText value="#{funcionarioManagedBean.funcionarioNovo.nome}" 
-						required="true" requiredMessage="Campo nome é obrigatório."/>
+					<p:inputText value="#{funcionarioManagedBean.funcionarioNovo.nome}"
+						required="true" requiredMessage="Campo nome é obrigatório." />
 				</p:column>
 			</p:row>
 
 			<p:row>
-				<p:column>
-					<h:outputLabel value="Função:" />
-				</p:column>
-				<p:column>
-					<p:inputText required="true" requiredMessage="Campo função é obrigatório."
-						value="#{funcionarioManagedBean.funcionarioNovo.funcao}" />
-				</p:column>
 				<p:column>
 					<h:outputLabel value="E-mail:" />
 				</p:column>
 				<p:column>
-					<p:inputText required="true" requiredMessage="Campo e-mail é obrigatório."
+					<p:inputText required="true"
+						requiredMessage="Campo e-mail é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioNovo.email}" />
+				</p:column>
+
+				<p:column>
+					<h:outputLabel value="Usuário:" />
+				</p:column>
+				<p:column>
+					<p:inputText required="true"
+						requiredMessage="Campo usuário é obrigatório."
+						value="#{funcionarioManagedBean.funcionarioNovo.usuario}" />
 				</p:column>
 			</p:row>
 
 			<p:row>
 				<p:column>
-					<h:outputLabel value="Usuário:" />
-				</p:column>
-				<p:column>
-					<p:inputText required="true" requiredMessage="Campo usuário é obrigatório."
-						value="#{funcionarioManagedBean.funcionarioNovo.usuario}" />
-				</p:column>
-
-				<p:column>
 					<h:outputLabel value="Perfil:" />
 				</p:column>
 				<p:column>
-					<p:selectOneMenu id="selectPerfil" effectDuration="100" 
+					<p:selectOneMenu id="selectPerfil" effectDuration="100"
 						required="true" requiredMessage="Campo perfil é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioNovo.perfilId}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -69,9 +67,6 @@
 					</p:selectOneMenu>
 				</p:column>
 
-			</p:row>
-
-			<p:row>
 				<p:column>
 					<h:outputLabel value="Senha:" for="senha1" />
 				</p:column>
@@ -83,7 +78,16 @@
 						requiredMessage="Senha é obrigatório"
 						value="#{funcionarioManagedBean.funcionarioNovo.senha}" />
 				</p:column>
+			</p:row>
 
+			<p:row>
+				<p:column>
+
+				</p:column>
+
+				<p:column>
+
+				</p:column>
 				<p:column>
 					<h:outputLabel value="Novamente:" for="senha2" />
 				</p:column>
@@ -108,7 +112,7 @@
 							actionListener="#{funcionarioManagedBean.cadastrarFuncionario}"
 							update="frmDialogCadFuncionario :frmFuncDataTable"
 							oncomplete="if(!args.validationFailed) dialogCadFuncionario.hide(); 
-										else dialogCadFuncionario.show();"/>
+										else dialogCadFuncionario.show();" />
 					</div>
 				</p:column>
 			</p:row>
