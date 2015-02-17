@@ -6,8 +6,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:confirmDialog id="idDialogInativarFuncionario" header="Inativar Funcionario"
-	widgetVar="dialogInativarFuncionario" appendToBody="true"
+<p:confirmDialog id="idDialogInativarFuncionario"
+	header="Inativar Funcionario" widgetVar="dialogInativarFuncionario"
+	appendTo="@(body)"
 	message="#{funcionarioManagedBean.funcionarioSelecionado.nome} será inativado(a). Você tem certeza?"
 	severity="alert">
 	<div align="right">
@@ -15,11 +16,11 @@
 			<p:commandButton value="Sim"
 				actionListener="#{funcionarioManagedBean.inativarFuncionario}"
 				update=":frmFuncDataTable"
-				oncomplete="if(!args.validationFailed) dialogInativarFuncionario.hide(); 
-							else dialogInativarFuncionario.show();" />
+				oncomplete="if(!args.validationFailed) PF('dialogInativarFuncionario').hide(); 
+							else PF('dialogInativarFuncionario').show();" />
 
 			<p:commandButton value="Não" type="button"
-				onclick="dialogInativarFuncionario.hide()" />
+				onclick="PF('dialogInativarFuncionario').hide()" />
 		</h:form>
 	</div>
 </p:confirmDialog>

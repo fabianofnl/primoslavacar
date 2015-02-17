@@ -8,12 +8,13 @@ import java.io.Serializable;
  * @author Claudemir
  * 
  */
-public class FuncionarioViewBean extends UsuarioViewBean implements Serializable {
+public class FuncionarioViewBean extends UsuarioViewBean implements
+		Serializable {
 
 	private static final long serialVersionUID = 3576824392171045517L;
 
-	private Integer cpf;
-	private Integer cpfAntigo;
+	private Long cpf;
+	private Long cpfAntigo;
 	private String nome;
 	private String email;
 	private String status;
@@ -26,7 +27,7 @@ public class FuncionarioViewBean extends UsuarioViewBean implements Serializable
 	 * 
 	 * @return cpf
 	 */
-	public Integer getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
@@ -35,7 +36,7 @@ public class FuncionarioViewBean extends UsuarioViewBean implements Serializable
 	 * 
 	 * @param cpf
 	 */
-	public void setCpf(Integer cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 
@@ -44,7 +45,7 @@ public class FuncionarioViewBean extends UsuarioViewBean implements Serializable
 	 * 
 	 * @return cpfAntigo
 	 */
-	public Integer getCpfAntigo() {
+	public Long getCpfAntigo() {
 		return cpfAntigo;
 	}
 
@@ -53,7 +54,7 @@ public class FuncionarioViewBean extends UsuarioViewBean implements Serializable
 	 * 
 	 * @param cpfAntigo
 	 */
-	public void setCpfAntigo(Integer cpfAntigo) {
+	public void setCpfAntigo(Long cpfAntigo) {
 		this.cpfAntigo = cpfAntigo;
 	}
 

@@ -239,7 +239,6 @@ public class FuncionarioManagedBean implements Serializable {
 	public FuncionarioViewBean getFuncionarioSelecionado() {
 		LOG.info("GET funcionario selecionado: "
 				+ funcionarioSelecionado.getNome());
-		funcionarioSelecionado.setCpfAntigo(funcionarioSelecionado.getCpf());
 		return funcionarioSelecionado;
 	}
 

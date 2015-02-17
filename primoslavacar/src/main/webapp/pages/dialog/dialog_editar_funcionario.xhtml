@@ -7,7 +7,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:dialog id="idDialogEditFuncionario" header="Editar Funcionario"
-	widgetVar="dialogEditFuncionario" appendToBody="true" modal="true"
+	widgetVar="dialogEditFuncionario" appendTo="@(body)" modal="true"
 	dynamic="true" resizable="false">
 
 	<h:form id="frmDialogEditFuncionario">
@@ -19,7 +19,7 @@
 				<p:column>
 					<p:inputMask required="true" converter="cpfConverter"
 						requiredMessage="Campo CPF é obrigatório."
-						value="#{funcionarioManagedBean.funcionarioNovo.cpf}"
+						value="#{funcionarioManagedBean.funcionarioSelecionado.cpf}"
 						mask="999.999.999-99" maxlength="14" />
 				</p:column>
 				<p:column>
@@ -83,12 +83,12 @@
 				<p:column colspan="4">
 					<div align="right">
 						<p:commandButton value="Cancelar" type="button"
-							onclick="dialogEditFuncionario.hide()" />
+							onclick="PF('dialogEditFuncionario').hide()" />
 						<p:commandButton value="OK"
 							actionListener="#{funcionarioManagedBean.editarFuncionario}"
 							update="frmDialogEditFuncionario :frmFuncDataTable"
-							oncomplete="if(!args.validationFailed) dialogEditFuncionario.hide(); 
-										else dialogEditFuncionario.show();" />
+							oncomplete="if(!args.validationFailed) PF('dialogEditFuncionario').hide(); 
+										else PF('dialogEditFuncionario').show();" />
 					</div>
 				</p:column>
 			</p:row>

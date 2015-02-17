@@ -7,8 +7,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:dialog id="idDialogCadFuncionario" header="Cadastrar Funcionario"
-	widgetVar="dialogCadFuncionario" modal="true" dynamic="true"
-	appendToBody="true" resizable="false">
+	widgetVar="dialogCadFuncionario" dynamic="true" modal="true"
+	appendTo="@(body)" resizable="false">
 
 	<h:form id="frmDialogCadFuncionario">
 		<p:panelGrid>
@@ -107,12 +107,12 @@
 				<p:column colspan="4">
 					<div align="right">
 						<p:commandButton value="Cancelar" type="button"
-							onclick="dialogCadFuncionario.hide()" />
+							onclick="PF('dialogCadFuncionario').hide()" />
 						<p:commandButton value="OK"
 							actionListener="#{funcionarioManagedBean.cadastrarFuncionario}"
 							update="frmDialogCadFuncionario :frmFuncDataTable"
-							oncomplete="if(!args.validationFailed) dialogCadFuncionario.hide(); 
-										else dialogCadFuncionario.show();" />
+							oncomplete="if(!args.validationFailed) PF('dialogCadFuncionario').hide(); 
+										else PF('dialogCadFuncionario').show();" />
 					</div>
 				</p:column>
 			</p:row>

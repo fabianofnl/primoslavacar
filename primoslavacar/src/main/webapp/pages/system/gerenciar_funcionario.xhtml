@@ -32,8 +32,8 @@
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 					<p:column headerText="CPF">
-						<h:outputText value="#{func.cpf}" >
-							<f:converter converterId="cpfConverter"/>
+						<h:outputText value="#{func.cpf}">
+							<f:converter converterId="cpfConverter" />
 						</h:outputText>
 					</p:column>
 
@@ -61,7 +61,7 @@
 						<p:commandButton id="btnEdit" title="Editar" icon="ui-icon-wrench"
 							style="width:22px; height:22px;"
 							actionListener="#{funcionarioManagedBean.carregarPerfil}"
-							oncomplete="dialogEditFuncionario.show()"
+							oncomplete="PF('dialogEditFuncionario').show()"
 							update=":idDialogEditFuncionario">
 							<f:setPropertyActionListener
 								target="#{funcionarioManagedBean.funcionarioSelecionado}"
@@ -70,7 +70,7 @@
 
 						<p:commandButton id="btnIna" title="Inativar" icon="ui-icon-power"
 							style="width:22px; height:22px;"
-							oncomplete="dialogInativarFuncionario.show()"
+							oncomplete="PF('dialogInativarFuncionario').show()"
 							update=":idDialogInativarFuncionario">
 							<f:setPropertyActionListener
 								target="#{funcionarioManagedBean.funcionarioSelecionado}"
@@ -82,19 +82,16 @@
 				<p:commandButton value="Adicionar funcionário"
 					style="margin-top: 10px;"
 					actionListener="#{funcionarioManagedBean.carregarPerfil}"
-					oncomplete="dialogCadFuncionario.show()"
+					oncomplete="PF('dialogCadFuncionario').show()"
 					update=":idDialogCadFuncionario" />
 
 			</h:form>
 
-			<ui:include
-				src="/pages/dialog/dialog_cadastrar_funcionario.xhtml" />
+			<ui:include src="/pages/dialog/dialog_cadastrar_funcionario.xhtml" />
 
-			<ui:include
-				src="/pages/dialog/dialog_editar_funcionario.xhtml" />
+			<ui:include src="/pages/dialog/dialog_editar_funcionario.xhtml" />
 
-			<ui:include
-				src="/pages/dialog/dialog_inativar_funcionario.xhtml" />
+			<ui:include src="/pages/dialog/dialog_inativar_funcionario.xhtml" />
 
 		</div>
 	</ui:define>
