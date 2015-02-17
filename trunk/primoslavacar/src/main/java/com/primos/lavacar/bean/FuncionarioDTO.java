@@ -13,6 +13,7 @@ public class FuncionarioDTO extends UsuarioDTO implements Serializable {
 	private static final long serialVersionUID = 3576824392171045517L;
 
 	private Integer cpf;
+	private Integer cpfAntigo;
 	private String nome;
 	private String email;
 	private String status;
@@ -36,6 +37,24 @@ public class FuncionarioDTO extends UsuarioDTO implements Serializable {
 	 */
 	public void setCpf(Integer cpf) {
 		this.cpf = cpf;
+	}
+
+	/**
+	 * Método retorna <b>cpfAntigo</b> do usuario.
+	 * 
+	 * @return cpfAntigo
+	 */
+	public Integer getCpfAntigo() {
+		return cpfAntigo;
+	}
+
+	/**
+	 * Método atribui <b>cpfAntigo</b> ao usuario.
+	 * 
+	 * @param cpfAntigo
+	 */
+	public void setCpfAntigo(Integer cpfAntigo) {
+		this.cpfAntigo = cpfAntigo;
 	}
 
 	/**

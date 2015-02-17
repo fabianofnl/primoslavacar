@@ -15,7 +15,7 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE funcionario (
-	cpf INTEGER NOT NULL PRIMARY KEY,
+	cpf NUMERIC(11) NOT NULL PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
 	email VARCHAR(100) NOT NULL,
 	status VARCHAR(10) DEFAULT 'Ativo',
@@ -28,7 +28,7 @@ INSERT INTO perfil (descricao, roleName) VALUES ('Usuário', 'ROLE_USER'); -- 2
 INSERT INTO usuario (usuario, senha, perfilId) VALUES ('jsilva', MD5('123'), 1);
 INSERT INTO usuario (usuario, senha, perfilId) VALUES ('apaula', MD5('123'), 2);
 
-INSERT INTO funcionario (cpf, nome, email, usuario) VALUES (1111,'João Silva','jsilva@teste.com','jsilva');
-INSERT INTO funcionario (cpf, nome, email, usuario) VALUES (2222,'Ana Paula','apaula@teste.com','apaula');
+INSERT INTO funcionario (cpf, nome, email, usuario) VALUES (12345678911,'João Silva','jsilva@teste.com','jsilva');
+INSERT INTO funcionario (cpf, nome, email, usuario) VALUES (12345678922,'Ana Paula','apaula@teste.com','apaula');
 
 
