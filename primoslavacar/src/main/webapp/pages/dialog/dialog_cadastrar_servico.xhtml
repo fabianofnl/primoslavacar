@@ -4,6 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:dialog id="idDialogCadServico" header="Cadastrar Serviço"
@@ -18,8 +19,9 @@
 					<h:outputLabel value="Nome:" />
 				</p:column>
 				<p:column>
-					<p:inputText value="#{servicoManagedBean.servicoNovo.nome}" size="46"
-						required="true" requiredMessage="Campo nome é obrigatório." />
+					<p:inputText value="#{servicoManagedBean.servicoNovo.nome}"
+						size="46" required="true"
+						requiredMessage="Campo nome é obrigatório." />
 				</p:column>
 			</p:row>
 
@@ -29,10 +31,11 @@
 					<h:outputLabel value="Descrição:" />
 				</p:column>
 				<p:column>
-					<p:editor required="true" requiredMessage="Campo descrição é obrigatório."
-						value="#{servicoManagedBean.servicoNovo.descricao}" widgetVar="descricao"
-						width="350"/>
-					
+					<p:editor required="true"
+						requiredMessage="Campo descrição é obrigatório."
+						value="#{servicoManagedBean.servicoNovo.descricao}"
+						widgetVar="descricao" width="350" />
+
 				</p:column>
 
 			</p:row>
@@ -42,10 +45,10 @@
 					<h:outputLabel value="Valor:" />
 				</p:column>
 				<p:column>
-					<p:inputText required="true"
-						requiredMessage="Campo valor é obrigatório."
-						value="#{servicoManagedBean.servicoNovo.valor}">
-					</p:inputText>
+					<pe:inputNumber required="true"
+						requiredMessage="O campo valor é obrigatório."
+						value="#{servicoManagedBean.servicoNovo.valor}" symbol="R$ "
+						decimalSeparator="," thousandSeparator="." />
 				</p:column>
 
 				<p:column></p:column>

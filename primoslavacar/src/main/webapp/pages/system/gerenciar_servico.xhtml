@@ -4,6 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:composition template="/pages/template/system_template.xhtml">
@@ -40,7 +41,9 @@
 					</p:column>
 
 					<p:column headerText="Valor">
-						<h:outputText value="#{serv.valor}" />
+						<h:outputText value="#{serv.valor}">
+							<f:convertNumber currencySymbol="R$ " type="currency" locale="pt_BR"/>
+						</h:outputText>
 					</p:column>
 
 					<p:column headerText="Status">
