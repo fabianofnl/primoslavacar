@@ -77,11 +77,11 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
-		List<FuncionarioViewBean> listaFuncionarios = new ArrayList<FuncionarioViewBean>();
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(SELECT_TODOS_FUNCIONARIO);
 		rs = pstmt.executeQuery();
+
+		List<FuncionarioViewBean> listaFuncionarios = new ArrayList<FuncionarioViewBean>();
 		FuncionarioViewBean func = null;
 
 		while (rs.next()) {
@@ -100,12 +100,7 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 			listaFuncionarios.add(func);
 		}
 
-		if (rs != null)
-			rs.close();
-		if (pstmt != null)
-			pstmt.close();
-		if (conn != null)
-			conn.close();
+		fecharConexao(rs, pstmt, conn);
 
 		return listaFuncionarios;
 	}
@@ -124,11 +119,11 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
-		List<PerfilViewBean> listaPerfis = new ArrayList<PerfilViewBean>();
 		conn = ConexaoBaseDados.getConexaoInstance();
 		pstmt = conn.prepareStatement(SELECT_TODOS_PERFIS);
 		rs = pstmt.executeQuery();
+
+		List<PerfilViewBean> listaPerfis = new ArrayList<PerfilViewBean>();
 		PerfilViewBean perfil = null;
 
 		while (rs.next()) {
@@ -546,5 +541,15 @@ public class FuncionarioModelImpl implements FuncionarioModel {
 			conn.close();
 
 		return listaFuncionarios;
+	}
+
+	private void fecharConexao(ResultSet rs, PreparedStatement pstmt,
+			Connection conn) throws SQLException {
+		if (rs != null)
+			rs.close();
+		if (pstmt != null)
+			pstmt.close();
+		if (conn != null)
+			conn.close();
 	}
 }

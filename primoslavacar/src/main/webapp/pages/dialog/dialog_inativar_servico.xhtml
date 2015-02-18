@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:confirmDialog id="idDialogInativarServico"
+	header="Inativar Serviço" widgetVar="dialogInativarServico"
+	appendTo="@(body)"
+	message="#{servicoManagedBean.servicoSelecionado.nome} será inativado(a). Você tem certeza?"
+	severity="alert">
+	<div align="right">
+		<h:form id="frmDialogInativarServico">
+			<p:commandButton value="Sim"
+				actionListener="#{servicoManagedBean.inativarServico}"
+				update=":frmServicoDataTable"
+				oncomplete="if(!args.validationFailed) PF('dialogInativarServico').hide(); 
+							else PF('dialogInativarServico').show();" />
+
+			<p:commandButton value="Não" type="button"
+				onclick="PF('dialogInativarServico').hide()" />
+		</h:form>
+	</div>
+</p:confirmDialog>
+</html>

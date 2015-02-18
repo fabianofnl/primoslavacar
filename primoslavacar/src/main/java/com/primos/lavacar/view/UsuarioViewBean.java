@@ -3,15 +3,15 @@ package com.primos.lavacar.view;
 import java.io.Serializable;
 
 /**
- * Classe POJO/BEAN/DTO que representa o Usuário para realização da
- * autenticação do sistema.
+ * Classe POJO/BEAN/DTO que representa o Usuário para realização da autenticação
+ * do sistema.
  * 
  * @author Claudemir
  * 
  */
 public class UsuarioViewBean extends PerfilViewBean implements Serializable {
 
-	private static final long serialVersionUID = -1003024660686069159L;
+	private static final long serialVersionUID = 8932921618960781400L;
 
 	private String usuario;
 	private String senha;

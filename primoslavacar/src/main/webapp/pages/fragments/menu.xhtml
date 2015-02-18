@@ -23,22 +23,22 @@
 				url="/pages/system/dashboard.jsf" />
 		</p:submenu>
 
+		<p:submenu label="CLIENTE"
+			rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN' or loginManagedBean.funcionario.role eq 'ROLE_INSTRUTOR'}">
+			<p:menuitem value="Gerenciar Clientes"
+				url="/pages/system/gerenciar_cliente.jsf" />
+		</p:submenu>
+
 		<p:submenu label="FUNCIONÁRIO">
 			<p:menuitem value="Gerenciar Funcionário"
 				url="/pages/system/gerenciar_funcionario.jsf"
 				rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN'}" />
 		</p:submenu>
 
-		<p:submenu label="CLIENTE"
-			rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN' or loginManagedBean.funcionario.role eq 'ROLE_INSTRUTOR'}">
-			<p:menuitem value="Gerenciar Clientes"
-				url="/pages/system/gerenciar_temas.jsf" />
-		</p:submenu>
-		
 		<p:submenu label="SERVIÇOS"
 			rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN' or loginManagedBean.funcionario.role eq 'ROLE_INSTRUTOR'}">
 			<p:menuitem value="Gerenciar Serviços"
-				url="/pages/system/gerenciar_temas.jsf" />
+				url="/pages/system/gerenciar_servico.jsf" />
 		</p:submenu>
 
 		<p:submenu label="GERENCIAMENTO"

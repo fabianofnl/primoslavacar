@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:dialog id="idDialogCadCliente" header="Cadastrar Cliente"
+	widgetVar="dialogCadCliente" dynamic="true" modal="true"
+	appendTo="@(body)" resizable="false">
+
+	<h:form id="frmDialogCadCliente">
+		<p:panelGrid>
+			<p:row>
+
+				<p:column>
+					<h:outputLabel value="CPF:" />
+				</p:column>
+				<p:column>
+					<p:inputMask required="true" converter="cpfConverter"
+						requiredMessage="Campo CPF é obrigatório."
+						value="#{clienteManagedBean.clienteNovo.cpf}"
+						mask="999.999.999-99" maxlength="14" />
+				</p:column>
+
+				<p:column>
+					<h:outputLabel value="Nome:" />
+				</p:column>
+				<p:column>
+					<p:inputText value="#{clienteManagedBean.clienteNovo.nome}"
+						required="true" requiredMessage="Campo nome é obrigatório." />
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column>
+					<h:outputLabel value="Telefone:" />
+				</p:column>
+				<p:column>
+					<p:inputMask required="true" converter="telefoneConverter"
+						requiredMessage="Campo telefone é obrigatório."
+						value="#{clienteManagedBean.clienteNovo.telefone}"
+						mask="(99)9999-9999" maxlength="13" />
+				</p:column>
+
+				<p:column>
+					<h:outputLabel value="Endereço/Nº:" />
+				</p:column>
+				<p:column>
+					<p:inputText required="true"
+						requiredMessage="Campo endereço/nº é obrigatório."
+						value="#{clienteManagedBean.clienteNovo.enderecoNumero}" />
+				</p:column>
+
+			</p:row>
+
+			<p:row>
+				<p:column>
+					<h:outputLabel value="E-mail:" />
+				</p:column>
+				<p:column>
+					<p:inputText required="true"
+						requiredMessage="Campo e-mail é obrigatório."
+						value="#{clienteManagedBean.clienteNovo.email}" />
+				</p:column>
+
+				<p:column></p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="4">
+					<p:separator />
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="4">
+					<div align="right">
+						<p:commandButton value="Cancelar" type="button"
+							onclick="PF('dialogCadCliente').hide()" />
+						<p:commandButton value="OK"
+							actionListener="#{clienteManagedBean.cadastrarCliente}"
+							update="frmDialogCadCliente :frmClienteDataTable"
+							oncomplete="if(!args.validationFailed) PF('dialogCadCliente').hide(); 
+										else PF('dialogCadCliente').show();" />
+					</div>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</h:form>
+</p:dialog>
+</html>

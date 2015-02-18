@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:dialog id="idDialogCadServico" header="Cadastrar Serviço"
+	widgetVar="dialogCadServico" dynamic="true" modal="true"
+	appendTo="@(body)" resizable="false" width="502">
+
+	<h:form id="frmDialogCadServico">
+		<p:panelGrid style="width: 100%;">
+			<p:row>
+
+				<p:column>
+					<h:outputLabel value="Nome:" />
+				</p:column>
+				<p:column>
+					<p:inputText value="#{servicoManagedBean.servicoNovo.nome}" size="46"
+						required="true" requiredMessage="Campo nome é obrigatório." />
+				</p:column>
+			</p:row>
+
+			<p:row>
+
+				<p:column>
+					<h:outputLabel value="Descrição:" />
+				</p:column>
+				<p:column>
+					<p:editor required="true" requiredMessage="Campo descrição é obrigatório."
+						value="#{servicoManagedBean.servicoNovo.descricao}" widgetVar="descricao"
+						width="350"/>
+					
+				</p:column>
+
+			</p:row>
+
+			<p:row>
+				<p:column>
+					<h:outputLabel value="Valor:" />
+				</p:column>
+				<p:column>
+					<p:inputText required="true"
+						requiredMessage="Campo valor é obrigatório."
+						value="#{servicoManagedBean.servicoNovo.valor}">
+					</p:inputText>
+				</p:column>
+
+				<p:column></p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="2">
+					<p:separator />
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="2">
+					<div align="right">
+						<p:commandButton value="Cancelar" type="button"
+							onclick="PF('dialogCadServico').hide()" />
+						<p:commandButton value="OK"
+							actionListener="#{servicoManagedBean.cadastrarServico}"
+							update="frmDialogCadServico :frmServicoDataTable"
+							oncomplete="if(!args.validationFailed) PF('dialogCadServico').hide(); 
+										else PF('dialogCadServico').show();" />
+					</div>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</h:form>
+</p:dialog>
+</html>

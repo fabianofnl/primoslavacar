@@ -3,111 +3,78 @@ package com.primos.lavacar.view;
 import java.io.Serializable;
 
 /**
- * Classe POJO/BEAN/DTO que representa o Funcionario do sistema
+ * Classe POJO/BEAN/DTO que representa o Cliente do sistema
  * 
  * @author Claudemir
  * 
  */
-public class FuncionarioViewBean extends UsuarioViewBean implements
-		Serializable {
+public class ClienteViewBean implements Serializable {
 
-	private static final long serialVersionUID = 7055122086563417770L;
+	private static final long serialVersionUID = 1448451946953149867L;
 
 	private Long cpf;
 	private Long cpfAntigo;
 	private String nome;
+	private Long telefone;
+	private String enderecoNumero;
 	private String email;
 	private String status;
 
-	public FuncionarioViewBean() {
+	public ClienteViewBean() {
 	}
 
-	/**
-	 * Método retorna <b>cpf</b> do usuario.
-	 * 
-	 * @return cpf
-	 */
 	public Long getCpf() {
 		return cpf;
 	}
 
-	/**
-	 * Método atribui <b>cpf</b> ao usuario.
-	 * 
-	 * @param cpf
-	 */
 	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 
-	/**
-	 * Método retorna <b>cpfAntigo</b> do usuario.
-	 * 
-	 * @return cpfAntigo
-	 */
 	public Long getCpfAntigo() {
 		return cpfAntigo;
 	}
 
-	/**
-	 * Método atribui <b>cpfAntigo</b> ao usuario.
-	 * 
-	 * @param cpfAntigo
-	 */
 	public void setCpfAntigo(Long cpfAntigo) {
 		this.cpfAntigo = cpfAntigo;
 	}
 
-	/**
-	 * Método retorna <b>nome</b> do usuario.
-	 * 
-	 * @return nome
-	 */
 	public String getNome() {
 		return nome;
 	}
 
-	/**
-	 * Método atribui <b>nome</b> ao usuario.
-	 * 
-	 * @param nome
-	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	/**
-	 * Método retorna objeto <b>email</b> do usuario.
-	 * 
-	 * @return email
-	 */
+	public Long getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Long telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getEnderecoNumero() {
+		return enderecoNumero;
+	}
+
+	public void setEnderecoNumero(String enderecoNumero) {
+		this.enderecoNumero = enderecoNumero;
+	}
+
 	public String getEmail() {
 		return email;
 	}
 
-	/**
-	 * Método atribui objeto <b>email</b> ao usuario
-	 * 
-	 * @param email
-	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	/**
-	 * Método retorna objeto <b>status</b> do usuario.
-	 * 
-	 * @return status
-	 */
 	public String getStatus() {
 		return status;
 	}
 
-	/**
-	 * Método atribui objeto <b>status</b> ao usuario
-	 * 
-	 * @param status
-	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
@@ -115,13 +82,17 @@ public class FuncionarioViewBean extends UsuarioViewBean implements
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result
 				+ ((cpfAntigo == null) ? 0 : cpfAntigo.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result
+				+ ((enderecoNumero == null) ? 0 : enderecoNumero.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result
+				+ ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
 	}
 
@@ -129,11 +100,11 @@ public class FuncionarioViewBean extends UsuarioViewBean implements
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FuncionarioViewBean other = (FuncionarioViewBean) obj;
+		ClienteViewBean other = (ClienteViewBean) obj;
 		if (cpf == null) {
 			if (other.cpf != null)
 				return false;
@@ -149,6 +120,11 @@ public class FuncionarioViewBean extends UsuarioViewBean implements
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
+		if (enderecoNumero == null) {
+			if (other.enderecoNumero != null)
+				return false;
+		} else if (!enderecoNumero.equals(other.enderecoNumero))
+			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
@@ -158,6 +134,11 @@ public class FuncionarioViewBean extends UsuarioViewBean implements
 			if (other.status != null)
 				return false;
 		} else if (!status.equals(other.status))
+			return false;
+		if (telefone == null) {
+			if (other.telefone != null)
+				return false;
+		} else if (!telefone.equals(other.telefone))
 			return false;
 		return true;
 	}
