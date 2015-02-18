@@ -71,12 +71,7 @@ public class LoginModelImpl implements LoginModel {
 			funcionario.setEmail(rs.getString("email"));
 		}
 
-		if (rs != null)
-			rs.close();
-		if (pstmt != null)
-			pstmt.close();
-		if (conn != null)
-			conn.close();
+		fecharConexao(rs, pstmt, conn);
 
 		return funcionario;
 	}
@@ -110,13 +105,18 @@ public class LoginModelImpl implements LoginModel {
 			username = rs.getString("usuario");
 		}
 
+		fecharConexao(rs, pstmt, conn);
+
+		return username;
+	}
+
+	private void fecharConexao(ResultSet rs, PreparedStatement pstmt,
+			Connection conn) throws SQLException {
 		if (rs != null)
 			rs.close();
 		if (pstmt != null)
 			pstmt.close();
 		if (conn != null)
 			conn.close();
-
-		return username;
 	}
 }

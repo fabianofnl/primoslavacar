@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:dialog id="idDialogEditServico" header="Editar Serviço" width="502"
+	widgetVar="dialogEditServico" appendTo="@(body)" modal="true"
+	dynamic="true" resizable="false">
+
+	<h:form id="frmDialogEditServico">
+		<p:panelGrid style="width: 100%;">
+			<p:row>
+
+				<p:column>
+					<h:outputLabel value="Nome:" />
+				</p:column>
+				<p:column>
+					<p:inputText value="#{servicoManagedBean.servicoSelecionado.nome}" size="46"
+						required="true" requiredMessage="Campo nome é obrigatório." />
+				</p:column>
+			</p:row>
+
+			<p:row>
+
+				<p:column>
+					<h:outputLabel value="Descrição:" />
+				</p:column>
+				<p:column>
+					<p:editor required="true" requiredMessage="Campo descrição é obrigatório."
+						value="#{servicoManagedBean.servicoSelecionado.descricao}" widgetVar="descricao"
+						width="350"/>
+				</p:column>
+
+			</p:row>
+
+			<p:row>
+				<p:column>
+					<h:outputLabel value="Valor:" />
+				</p:column>
+				<p:column>
+					<p:inputText required="true"
+						requiredMessage="Campo valor é obrigatório."
+						value="#{servicoManagedBean.servicoSelecionado.valor}" />
+				</p:column>
+
+				<p:column></p:column>
+			</p:row>
+			
+			<p:row>
+				<p:column>
+					<h:outputLabel value="Status:" />
+				</p:column>
+				<p:column>
+					<p:selectOneMenu id="selectStatus" effectDuration="100"
+						required="true" requiredMessage="O campo status é obrigatório."
+						value="#{servicoManagedBean.servicoSelecionado.status}">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItem itemLabel="Ativo" itemValue="Ativo" />
+						<f:selectItem itemLabel="Inativo" itemValue="Inativo" />
+					</p:selectOneMenu>
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="2">
+					<p:separator />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column colspan="2">
+					<div align="right">
+						<p:commandButton value="Cancelar" type="button"
+							onclick="PF('dialogEditServico').hide()" />
+						<p:commandButton value="OK"
+							actionListener="#{servicoManagedBean.editarServico}"
+							update="frmDialogEditServico :frmServicoDataTable"
+							oncomplete="if(!args.validationFailed) PF('dialogEditServico').hide(); 
+										else PF('dialogEditServico').show();" />
+					</div>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</h:form>
+</p:dialog>
+</html>

@@ -9,12 +9,19 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 /**
+ * Classe que implementa Converter, os métodos converter o CPF extraindo mascara
+ * ou adicionando
+ * 
  * @author Claudemir
  * 
  */
 @FacesConverter("cpfConverter")
 public class CpfConverter implements Converter {
 
+	/**
+	 * Método que converte o valor digitado na tela para o objeto do sistema, é
+	 * removido a mascara do CPF para ser convertido em um Long.
+	 */
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component,
 			String value) {
@@ -25,9 +32,15 @@ public class CpfConverter implements Converter {
 		return cpf;
 	}
 
+	/**
+	 * Método que converte um valor para ser apresentado na tela na forma de
+	 * String, é adicionado a mascará do CPF
+	 * 
+	 */
 	@Override
 	public String getAsString(FacesContext context, UIComponent component,
 			Object value) {
+
 		String cpf = value.toString();
 
 		if (cpf.length() == 10)

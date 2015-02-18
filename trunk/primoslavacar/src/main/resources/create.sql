@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS servico;
+DROP TABLE IF EXISTS cliente;
 DROP TABLE IF EXISTS funcionario;
 DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS perfil;
@@ -22,11 +24,28 @@ CREATE TABLE funcionario (
 	usuario VARCHAR(100) NOT NULL REFERENCES usuario(usuario)
 );
 
+CREATE TABLE cliente (
+	cpf NUMERIC(11) NOT NULL PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	endereconumero VARCHAR(100) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	telefone NUMERIC(10) NOT NULL,
+	status VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE servico (
+	id SERIAL NOT NULL PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	descricao TEXT NOT NULL,
+	valor NUMERIC(18,2) NOT NULL,
+	status VARCHAR(10) NOT NULL
+);
+
 INSERT INTO perfil (descricao, roleName) VALUES ('Administrador', 'ROLE_ADMIN'); -- 1
 INSERT INTO perfil (descricao, roleName) VALUES ('Usuário', 'ROLE_USER'); -- 2
 
 INSERT INTO usuario (usuario, senha, perfilId) VALUES ('jsilva', MD5('123'), 1);
 INSERT INTO usuario (usuario, senha, perfilId) VALUES ('apaula', MD5('123'), 2);
 
-INSERT INTO funcionario (cpf, nome, email, usuario) VALUES (12345678911,'João Silva','jsilva@teste.com','jsilva');
-INSERT INTO funcionario (cpf, nome, email, usuario) VALUES (12345678922,'Ana Paula','apaula@teste.com','apaula');
+INSERT INTO funcionarios (cpf, nome, email, usuario) VALUES (12345678911,'João Silva','jsilva@teste.com','jsilva');
+INSERT INTO funcionarios (cpf, nome, email, usuario) VALUES (12345678922,'Ana Paula','apaula@teste.com','apaula');

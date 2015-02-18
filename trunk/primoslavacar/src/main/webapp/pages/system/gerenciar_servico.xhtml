@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/pages/template/system_template.xhtml">
+	<ui:define name="content">
+		<div class="div-content">
+
+			<p:growl autoUpdate="true" showDetail="true" showSummary="true"
+				life="10000" />
+
+			<div align="center" class="header-title-page">
+				Serviços
+				<p:separator />
+			</div>
+
+			<h:form id="frmRemoteCommand">
+				<p:remoteCommand name="onloadTabela"
+					actionListener="#{servicoManagedBean.carregarTabela}"
+					autoRun="true" update=":frmServicoDataTable:servicoDataTable" />
+			</h:form>
+
+			<h:form id="frmServicoDataTable">
+				<p:dataTable id="servicoDataTable" rows="5"
+					rowsPerPageTemplate="5,10,15" paginator="true"
+					emptyMessage="Não há registros."
+					value="#{servicoManagedBean.listaServicos}" var="serv"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{serv.nome}"/>
+					</p:column>
+
+					<p:column headerText="Descrição">
+						<h:outputText escape="false" value="#{serv.descricao}" />
+					</p:column>
+
+					<p:column headerText="Valor">
+						<h:outputText value="#{serv.valor}" />
+					</p:column>
+
+					<p:column headerText="Status">
+						<h:outputText value="#{serv.status}" />
+					</p:column>
+
+					<p:column headerText="Ações" styleClass="centralizar">
+						<p:commandButton id="btnEdit" title="Editar" icon="ui-icon-wrench"
+							style="width:22px; height:22px;"
+							oncomplete="PF('dialogEditServico').show()"
+							update=":idDialogEditServico">
+							<f:setPropertyActionListener
+								target="#{servicoManagedBean.servicoSelecionado}"
+								value="#{serv}" />
+						</p:commandButton>
+
+						<p:commandButton id="btnIna" title="Inativar" icon="ui-icon-power"
+							style="width:22px; height:22px;"
+							oncomplete="PF('dialogInativarServico').show()"
+							update=":idDialogInativarServico">
+							<f:setPropertyActionListener
+								target="#{servicoManagedBean.servicoSelecionado}"
+								value="#{serv}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:commandButton value="Adicionar serviço"
+					style="margin-top: 10px;"
+					oncomplete="PF('dialogCadServico').show()"
+					update=":idDialogCadServico" />
+
+			</h:form>
+
+			<ui:include src="/pages/dialog/dialog_cadastrar_servico.xhtml" />
+
+			<ui:include src="/pages/dialog/dialog_editar_servico.xhtml" />
+
+			<ui:include src="/pages/dialog/dialog_inativar_servico.xhtml" />
+
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

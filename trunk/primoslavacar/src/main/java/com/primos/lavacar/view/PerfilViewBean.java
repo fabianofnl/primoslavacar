@@ -3,8 +3,7 @@ package com.primos.lavacar.view;
 import java.io.Serializable;
 
 /**
- * Classe POJO/BEAN/DTO que representa a Agenda do sistema.
- * Categorização/perfil
+ * Classe POJO/BEAN/DTO que representa a Agenda do sistema. Categorização/perfil
  * de cada usuário, fornece o nível de autorização do sistema.
  * 
  * @author Claudemir
@@ -12,7 +11,7 @@ import java.io.Serializable;
  */
 public class PerfilViewBean implements Serializable {
 
-	private static final long serialVersionUID = -456106320628876359L;
+	private static final long serialVersionUID = -7980994677696330299L;
 
 	private Integer perfilId;
 	private String descricao;
