@@ -26,6 +26,10 @@
 	font-size: 16px;
 }
 
+.font-size12 {
+	font-size: 12px;
+}
+
 .centralizar {
 	text-align: center;
 }
@@ -84,11 +88,11 @@
 	vertical-align: top !important;
 }
 
-.ui-panelgrid {
+.tableBorderNone {
 	border-collapse: separate !important;
 }
 
-.ui-panelgrid tr td {
+.tableBorderNone tr td {
 	border: none !important;
 }
 
