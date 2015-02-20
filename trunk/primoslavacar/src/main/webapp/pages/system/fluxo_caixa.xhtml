@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/pages/template/system_template.xhtml">
+	<ui:define name="content">
+		<div class="div-content">
+
+			<p:growl autoUpdate="true" showDetail="true" showSummary="true"
+				life="10000" />
+
+			<div align="center" class="header-title-page">
+				Fluxo de Caixa
+				<p:separator />
+			</div>
+			<!-- 
+			<h:form id="frmRemoteCommand">
+				<p:remoteCommand name="onloadTabela"
+					actionListener="#{relatorioManagedBean.carregarTabela}"
+					autoRun="true" update=":frmRelatorioFluxoCaixa:relatorioFluxoCaixa1 :frmRelatorioFluxoCaixa:relatorioFluxoCaixa2" />
+			</h:form>
+ -->
+
+			<h:form id="frmRelatorioFluxoCaixa">
+				<p:panelGrid columns="3" styleClass="tableBorderNone"
+					style="width: 310px;">
+
+					<h:outputLabel value="Filtro do ano base:" />
+
+					<p:selectOneMenu required="true"
+						requiredMessage="O campo filtro do ano base é obrigatório.">
+						<f:selectItem itemLabel="2014" itemValue="2014" />
+						<f:selectItem itemLabel="2015" itemValue="2015" />
+					</p:selectOneMenu>
+
+					<p:commandButton value="OK" update="frmRelatorioFluxoCaixa" />
+				</p:panelGrid>
+				<br/>
+				<p:panelGrid styleClass="tableBorderNone">
+					<h:outputLabel style="font-size: 15px;font-weight: bold;" value="1º Semestre"/>
+				</p:panelGrid>
+				<br/>
+				<p:panelGrid id="relatorioFluxoCaixa1" style="width: 100%;">
+					<p:row>
+						<p:column style="width: 22%;"/>
+						<p:column style="width: 13%;"><strong>JANEIRO</strong></p:column>
+						<p:column style="width: 13%;"><strong>FEVEREIRO</strong></p:column>
+						<p:column style="width: 13%;"><strong>MARÇO</strong></p:column>
+						<p:column style="width: 13%;"><strong>ABRIL</strong></p:column>
+						<p:column style="width: 13%;"><strong>MAIO</strong></p:column>
+						<p:column style="width: 13%;"><strong>JUNHO</strong></p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Serviços</p:column>
+						<p:column>R$ 200,00</p:column>
+						<p:column>R$ 300,00</p:column>
+						<p:column>R$ 250,00</p:column>
+						<p:column>R$ 100,00</p:column>
+						<p:column>R$ 230,00</p:column>
+						<p:column>R$ 210,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<strong>I - TOTAIS DAS ENTRADAS</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 200,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 300,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 250,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 100,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 230,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 210,00</strong>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid style="width: 100%;">
+					<p:row>
+						<p:column style="width: 22%;">Despesa Material de Limpeza</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Despesa Energia Elétrica</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Despesa Água e Esgoto</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Despesa Telefone/Internet</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Despesa Aluguéis</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<strong>II - TOTAIS DAS SAÍDAS</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 200,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 300,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 250,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 100,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 230,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 210,00</strong>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br/>
+				<p:panelGrid style="width: 100%;">
+					<p:row>
+						<p:column style="width: 22%;">
+							<strong>III - RESULTADO OPERACIONAL</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column colspan="13" />
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<strong>IV - SALDO FINAL DE CAIXA</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+				<br/>
+				<br/>
+				<p:panelGrid styleClass="tableBorderNone">
+					<h:outputLabel style="font-size: 14px;font-weight: bold;" value="2º Semestre"/>
+				</p:panelGrid>
+				<br/>
+				<p:panelGrid id="relatorioFluxoCaixa2" style="width: 100%;">
+					<p:row>
+						<p:column style="width: 22%;"/>
+						<p:column style="width: 13%;"><strong>JULHO</strong></p:column>
+						<p:column style="width: 13%;"><strong>AGOSTO</strong></p:column>
+						<p:column style="width: 13%;"><strong>SETEMBRO</strong></p:column>
+						<p:column style="width: 13%;"><strong>OUTUBRO</strong></p:column>
+						<p:column style="width: 13%;"><strong>NOVEMBRO</strong></p:column>
+						<p:column style="width: 13%;"><strong>DEZEMBRO</strong></p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Serviços</p:column>
+						<p:column>R$ 240,00</p:column>
+						<p:column>R$ 330,00</p:column>
+						<p:column>R$ 500,00</p:column>
+						<p:column>R$ 330,00</p:column>
+						<p:column>R$ 400,00</p:column>
+						<p:column>R$ 300,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<strong>I - TOTAIS DAS ENTRADAS</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 240,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 330,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 500,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 330,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 400,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 300,00</strong>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid style="width: 100%;">
+					<p:row>
+						<p:column style="width: 22%;">Despesa Material de Limpeza</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+						<p:column style="width: 13%;">R$ 50,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Despesa Energia Elétrica</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Despesa Água e Esgoto</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Despesa Telefone/Internet</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Despesa Aluguéis</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+						<p:column>R$ 50,00</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<strong>II - TOTAIS DAS SAÍDAS</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 240,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 330,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 500,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 330,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 400,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 300,00</strong>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br/>
+				<p:panelGrid style="width: 100%;">
+					<p:row>
+						<p:column style="width: 22%;">
+							<strong>III - RESULTADO OPERACIONAL</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column style="width: 13%;">
+							<strong>R$ 0,00</strong>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column colspan="13" />
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<strong>IV - SALDO FINAL DE CAIXA</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+						<p:column>
+							<strong>R$ 0,00</strong>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
