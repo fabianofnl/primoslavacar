@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -20,7 +20,7 @@
 				</p:column>
 				<p:column>
 					<p:inputMask required="true" converter="cpfConverter"
-						requiredMessage="Campo CPF Ã© obrigatÃ³rio."
+						requiredMessage="Campo CPF é obrigatório."
 						value="#{clienteManagedBean.clienteSelecionado.cpf}"
 						mask="999.999.999-99" maxlength="14" />
 				</p:column>
@@ -30,7 +30,7 @@
 				</p:column>
 				<p:column>
 					<p:inputText value="#{clienteManagedBean.clienteSelecionado.nome}"
-						required="true" requiredMessage="Campo nome Ã© obrigatÃ³rio." />
+						required="true" requiredMessage="Campo nome é obrigatório." />
 				</p:column>
 			</p:row>
 
@@ -40,17 +40,17 @@
 				</p:column>
 				<p:column>
 					<p:inputMask required="true" converter="telefoneConverter"
-						requiredMessage="Campo telefone Ã© obrigatÃ³rio."
+						requiredMessage="Campo telefone é obrigatório."
 						value="#{clienteManagedBean.clienteSelecionado.telefone}"
 						mask="(99)9999-9999" maxlength="13" />
 				</p:column>
 
 				<p:column>
-					<h:outputLabel value="EndereÃ§o/NÂº:" />
+					<h:outputLabel value="Endereço/Nº:" />
 				</p:column>
 				<p:column>
 					<p:inputText required="true"
-						requiredMessage="Campo endereÃ§o/nÂº Ã© obrigatÃ³rio."
+						requiredMessage="Campo endereço/nº é obrigatório."
 						value="#{clienteManagedBean.clienteSelecionado.email}" />
 				</p:column>
 
@@ -62,7 +62,7 @@
 				</p:column>
 				<p:column>
 					<p:inputText required="true"
-						requiredMessage="Campo e-mail Ã© obrigatÃ³rio."
+						requiredMessage="Campo e-mail é obrigatório."
 						value="#{clienteManagedBean.clienteSelecionado.email}" />
 				</p:column>
 
@@ -71,7 +71,7 @@
 				</p:column>
 				<p:column>
 					<p:selectOneMenu id="selectStatus" effectDuration="100"
-						required="true" requiredMessage="O campo status Ã© obrigatÃ³rio."
+						required="true" requiredMessage="O campo status é obrigatório."
 						value="#{clienteManagedBean.clienteSelecionado.status}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItem itemLabel="Ativo" itemValue="Ativo" />

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -6,12 +6,76 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<ui:composition template="/pages/template/system_template.xhtml">
-		<ui:define name="content">
-			<div class="div-content">
-				Dashboard
+<ui:composition template="/pages/template/system_template.xhtml">
+	<ui:define name="content">
+		<div class="div-content">
+			<p:growl autoUpdate="true" showDetail="true" showSummary="true"
+				life="10000" />
+
+			<div align="center" class="header-title-page">
+				Agendamento
+				<p:separator />
 			</div>
-		</ui:define>
-	</ui:composition>
+			<!-- 
+			<h:form id="frmRemoteCommand">
+				<p:remoteCommand name="onloadTabela"
+					actionListener="#{dashboardManagedBean.carregarTabela}"
+					autoRun="true" update=":frmDashboardAgenda:dashboardAgenda" />
+			</h:form>
+ 			-->
+			<p:tabView>
+				<p:tab title="Agenda">
+					<p:schedule id="schedule"
+						value="#{agendaManagedBean.eventModelAgenda}"
+						widgetVar="myschedule" timeZone="America/Sao_Paulo">
+
+						<p:ajax event="dateSelect"
+							listener="#{agendaManagedBean.selecionarData}"
+							oncomplete="PF('eventDialog').show();" />
+						<p:ajax event="eventSelect"
+							listener="#{agendaManagedBean.selecionarServico}"
+							oncomplete="PF('eventDialog').show();" />
+						<p:ajax event="eventMove"
+							listener="#{agendaManagedBean.moverServico}" />
+						<p:ajax event="eventResize"
+							listener="#{agendaManagedBean.redimensionarServico}" />
+
+					</p:schedule>
+
+				</p:tab>
+
+				<p:tab title="Baixa de serviços">
+					<h:form id="frmAgenda">
+						<p:dataTable value="#{dashboardManagedBean.listaAgendamentos}"
+						emptyMessage="Não há registros"
+							var="agend">
+							<p:column headerText="Serviço">
+								<h:outputText value="#{agend.servico.nome}" />
+							</p:column>
+	
+							<p:column headerText="Cliente">
+								<h:outputText value="#{agend.cliente.nome}" />
+							</p:column>
+	
+							<p:column headerText="Data">
+								<h:outputText value="#{agend.data}" />
+							</p:column>
+	
+							<p:column headerText="Valor">
+								<h:outputText value="#{agend.servico.valor}" />
+							</p:column>
+							
+							<p:column headerText="Ações">
+								<p:commandButton icon="ui-icon-check" title="Baixa no serviço"/>
+								<p:commandButton icon="ui-icon-close" title="Cancelar agendamento"/>
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</p:tab>
+			</p:tabView>
+
+		</div>
+	</ui:define>
+</ui:composition>
 
 </html>

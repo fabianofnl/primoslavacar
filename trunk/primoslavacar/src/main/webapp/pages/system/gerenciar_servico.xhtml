@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -15,7 +15,7 @@
 				life="10000" />
 
 			<div align="center" class="header-title-page">
-				ServiÃ§os
+				Serviços
 				<p:separator />
 			</div>
 
@@ -28,7 +28,7 @@
 			<h:form id="frmServicoDataTable">
 				<p:dataTable id="servicoDataTable" rows="5"
 					rowsPerPageTemplate="5,10,15" paginator="true"
-					emptyMessage="NÃ£o hÃ¡ registros."
+					emptyMessage="Não há registros."
 					value="#{servicoManagedBean.listaServicos}" var="serv"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -36,7 +36,7 @@
 						<h:outputText value="#{serv.nome}"/>
 					</p:column>
 
-					<p:column headerText="DescriÃ§Ã£o">
+					<p:column headerText="Descrição">
 						<h:outputText escape="false" value="#{serv.descricao}" />
 					</p:column>
 
@@ -50,7 +50,7 @@
 						<h:outputText value="#{serv.status}" />
 					</p:column>
 
-					<p:column headerText="AÃ§Ãµes" styleClass="centralizar">
+					<p:column headerText="Ações" styleClass="centralizar">
 						<p:commandButton id="btnEdit" title="Editar" icon="ui-icon-wrench"
 							style="width:22px; height:22px;"
 							oncomplete="PF('dialogEditServico').show()"
@@ -71,7 +71,7 @@
 					</p:column>
 				</p:dataTable>
 
-				<p:commandButton value="Adicionar serviÃ§o"
+				<p:commandButton value="Adicionar serviço"
 					style="margin-top: 10px;"
 					oncomplete="PF('dialogCadServico').show()"
 					update=":idDialogCadServico" />
