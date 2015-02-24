@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -19,7 +19,7 @@
 				</p:column>
 				<p:column>
 					<p:inputMask required="true" converter="cpfConverter"
-						requiredMessage="Campo CPF Ã© obrigatÃ³rio."
+						requiredMessage="Campo CPF é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioSelecionado.cpf}"
 						mask="999.999.999-99" maxlength="14" />
 				</p:column>
@@ -28,7 +28,7 @@
 				</p:column>
 				<p:column>
 					<p:inputText required="true"
-						requiredMessage="O campo nome Ã© obrigatÃ³rio."
+						requiredMessage="O campo nome é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioSelecionado.nome}" />
 				</p:column>
 			</p:row>
@@ -39,7 +39,7 @@
 				</p:column>
 				<p:column>
 					<p:inputText required="true"
-						requiredMessage="O campo e-mail Ã© obrigatÃ³rio."
+						requiredMessage="O campo e-mail é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioSelecionado.email}" />
 				</p:column>
 
@@ -48,7 +48,7 @@
 				</p:column>
 				<p:column>
 					<p:selectOneMenu id="selectPerfil" effectDuration="100"
-						required="true" requiredMessage="O campo perfil Ã© obrigatÃ³rio."
+						required="true" requiredMessage="O campo perfil é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioSelecionado.perfilId}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{funcionarioManagedBean.listaPerfis}"
@@ -66,7 +66,7 @@
 				</p:column>
 				<p:column>
 					<p:selectOneMenu id="selectStatus" effectDuration="100"
-						required="true" requiredMessage="O campo status Ã© obrigatÃ³rio."
+						required="true" requiredMessage="O campo status é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioSelecionado.status}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItem itemLabel="Ativo" itemValue="Ativo" />

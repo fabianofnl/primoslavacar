@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -20,7 +20,7 @@
 				<p:column>
 					<p:inputMask required="true"
 						converter="cpfConverter"
-						requiredMessage="Campo CPF Ã© obrigatÃ³rio."
+						requiredMessage="Campo CPF é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioNovo.cpf}"
 						mask="999.999.999-99" maxlength="14" />
 				</p:column>
@@ -29,7 +29,7 @@
 				</p:column>
 				<p:column>
 					<p:inputText value="#{funcionarioManagedBean.funcionarioNovo.nome}"
-						required="true" requiredMessage="Campo nome Ã© obrigatÃ³rio." />
+						required="true" requiredMessage="Campo nome é obrigatório." />
 				</p:column>
 			</p:row>
 
@@ -39,16 +39,16 @@
 				</p:column>
 				<p:column>
 					<p:inputText required="true"
-						requiredMessage="Campo e-mail Ã© obrigatÃ³rio."
+						requiredMessage="Campo e-mail é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioNovo.email}" />
 				</p:column>
 
 				<p:column>
-					<h:outputLabel value="UsuÃ¡rio:" />
+					<h:outputLabel value="Usuário:" />
 				</p:column>
 				<p:column>
 					<p:inputText required="true"
-						requiredMessage="Campo usuÃ¡rio Ã© obrigatÃ³rio."
+						requiredMessage="Campo usuário é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioNovo.usuario}" />
 				</p:column>
 			</p:row>
@@ -59,7 +59,7 @@
 				</p:column>
 				<p:column>
 					<p:selectOneMenu id="selectPerfil" effectDuration="100"
-						required="true" requiredMessage="Campo perfil Ã© obrigatÃ³rio."
+						required="true" requiredMessage="Campo perfil é obrigatório."
 						value="#{funcionarioManagedBean.funcionarioNovo.perfilId}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{funcionarioManagedBean.listaPerfis}"
@@ -74,9 +74,9 @@
 				<p:column>
 					<p:password id="senha1" feedback="true" inline="true"
 						required="true" match="senha2" promptLabel="Insira a senha"
-						weakLabel="Fraco" goodLabel="MÃ©dio" strongLabel="Forte"
-						validatorMessage="As senhas nÃ£o sÃ£o iguais."
-						requiredMessage="Senha Ã© obrigatÃ³rio"
+						weakLabel="Fraco" goodLabel="Médio" strongLabel="Forte"
+						validatorMessage="As senhas não são iguais."
+						requiredMessage="Senha é obrigatório"
 						value="#{funcionarioManagedBean.funcionarioNovo.senha}" />
 				</p:column>
 			</p:row>
@@ -94,7 +94,7 @@
 				</p:column>
 				<p:column>
 					<p:password id="senha2" required="true" feedback="false"
-						requiredMessage="Senha Ã© obrigatÃ³rio"
+						requiredMessage="Senha é obrigatório"
 						value="#{funcionarioManagedBean.funcionarioNovo.senha}" />
 				</p:column>
 			</p:row>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -27,27 +27,27 @@
 						<p:focus for="username" />
 						<p:panelGrid columns="2" styleClass="tableBorderNone">
 
-							<h:outputText value="UsuÃ¡rio:" style="font-weight:bold;" />
+							<h:outputText value="Usuário:" style="font-weight:bold;" />
 							<p:inputText id="username" autocomplete="off" required="true"
-								requiredMessage="O campo usuÃ¡rio Ã© obrigatÃ³rio."
+								requiredMessage="O campo usuário é obrigatório."
 								value="#{loginManagedBean.funcionario.usuario}" />
 
 							<h:outputText value="E-mail:" style="font-weight:bold;" />
 							<p:inputText id="email" autocomplete="off" required="true"
-								requiredMessage="O campo e-mail Ã© obrigatÃ³rio."
+								requiredMessage="O campo e-mail é obrigatório."
 								value="#{loginManagedBean.funcionario.email}" />
 
 							<h:outputText value="Senha:" style="font-weight:bold;" />
 							<p:password id="senha1" feedback="true" required="true"
 								match="senha2" promptLabel="Insira a senha" weakLabel="Fraco"
-								goodLabel="MÃ©dio" strongLabel="Forte" inline="true"
-								validatorMessage="As senhas nÃ£o sÃ£o iguais."
-								requiredMessage="O campo senha Ã© obrigatÃ³rio"
+								goodLabel="Médio" strongLabel="Forte" inline="true"
+								validatorMessage="As senhas não são iguais."
+								requiredMessage="O campo senha é obrigatório"
 								value="#{loginManagedBean.funcionario.senha}" />
 
 							<h:outputText value="Re-senha" style="font-weight:bold;" />
 							<p:password id="senha2" required="true" feedback="false"
-								requiredMessage="O campo re-senha Ã© obrigatÃ³rio."
+								requiredMessage="O campo re-senha é obrigatório."
 								value="#{loginManagedBean.funcionario.senha}" />
 
 						</p:panelGrid>

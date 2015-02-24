@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -29,15 +29,15 @@
 				url="/pages/system/gerenciar_cliente.jsf" />
 		</p:submenu>
 
-		<p:submenu label="FUNCIONÃRIO">
-			<p:menuitem value="Gerenciar FuncionÃ¡rio"
+		<p:submenu label="FUNCIONÁRIO">
+			<p:menuitem value="Gerenciar Funcionário"
 				url="/pages/system/gerenciar_funcionario.jsf"
 				rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN'}" />
 		</p:submenu>
 
-		<p:submenu label="SERVIÃ‡OS"
+		<p:submenu label="SERVIÇOS"
 			rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN' or loginManagedBean.funcionario.role eq 'ROLE_INSTRUTOR'}">
-			<p:menuitem value="Gerenciar ServiÃ§os"
+			<p:menuitem value="Gerenciar Serviços"
 				url="/pages/system/gerenciar_servico.jsf" />
 		</p:submenu>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -27,7 +27,7 @@
 			<h:form id="frmClienteDataTable">
 				<p:dataTable id="clienteDataTable" rows="5"
 					rowsPerPageTemplate="5,10,15" paginator="true"
-					emptyMessage="NÃ£o hÃ¡ registros."
+					emptyMessage="Não há registros."
 					value="#{clienteManagedBean.listaClientes}" var="cli"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -51,7 +51,7 @@
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="EndereÃ§o">
+					<p:column headerText="Endereço">
 						<h:outputText value="#{cli.enderecoNumero}" />
 					</p:column>
 
@@ -59,7 +59,7 @@
 						<h:outputText value="#{cli.status}" />
 					</p:column>
 
-					<p:column headerText="AÃ§Ãµes" styleClass="centralizar">
+					<p:column headerText="Ações" styleClass="centralizar">
 						<p:commandButton id="btnEdit" title="Editar" icon="ui-icon-wrench"
 							style="width:22px; height:22px;"
 							oncomplete="PF('dialogEditCliente').show()"

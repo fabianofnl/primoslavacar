@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -10,7 +10,7 @@
 <p:confirmDialog id="idDialogInativarCliente"
 	header="Inativar Cliente" widgetVar="dialogInativarCliente"
 	appendTo="@(body)"
-	message="#{clienteManagedBean.clienteSelecionado.nome} serÃ¡ inativado(a). VocÃª tem certeza?"
+	message="#{clienteManagedBean.clienteSelecionado.nome} será inativado(a). Você tem certeza?"
 	severity="alert">
 	<div align="right">
 		<h:form id="frmDialogInativarCliente">
@@ -20,7 +20,7 @@
 				oncomplete="if(!args.validationFailed) PF('dialogInativarCliente').hide(); 
 							else PF('dialogInativarCliente').show();" />
 
-			<p:commandButton value="NÃ£o" type="button"
+			<p:commandButton value="Não" type="button"
 				onclick="PF('dialogInativarCliente').hide()" />
 		</h:form>
 	</div>
