@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:dialog id="idDialogAgendarServico" header="Agendar Serviço"
+	widgetVar="dialogAgendarServico" dynamic="true" appendTo="@(body)"
+	resizable="false" showEffect="fade" hideEffect="fade">
+
+	<h:form id="frmDialogAgendarServico">
+		<p:panelGrid styleClass="tableBorderNone">
+			<p:row>
+
+				<p:column style="width: 25%;">
+					<h:outputLabel value="Serviço:" />
+				</p:column>
+				<p:column style="width: 75%;">
+					<p:selectOneMenu value="#{agendaManagedBean.servicoSelecionado.id}">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems itemLabel="#{serv.nome}" itemValue="#{serv.id}"
+							value="#{agendaManagedBean.listaServicos}" var="serv" />
+					</p:selectOneMenu>
+				</p:column>
+
+			</p:row>
+
+			<p:row>
+				<p:column>
+					<h:outputLabel value="Cliente:" />
+				</p:column>
+				<p:column>
+					<p:selectOneMenu value="#{agendaManagedBean.clienteSelecionado.cpf}">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems itemLabel="#{cli.nome}" itemValue="#{cli.cpf}"
+							value="#{agendaManagedBean.listaClientes}" var="cli" />
+					</p:selectOneMenu>
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column>
+					<h:outputLabel value="Data Início:" />
+				</p:column>
+				<p:column>
+					<p:calendar id="dtInicio" timeZone="America/Sao_Paulo"
+						value="#{agendaManagedBean.agendamento.dataInicio}"
+						pattern="dd/MM/yyyy" />
+				</p:column>
+
+
+			</p:row>
+
+			<p:row>
+				<p:column>
+					<h:outputLabel value="Data Fim:" />
+				</p:column>
+				<p:column>
+					<p:calendar id="dtFim" timeZone="America/Sao_Paulo"
+						value="#{agendaManagedBean.agendamento.dataFim}"
+						pattern="dd/MM/yyyy" />
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="2">
+					<p:separator />
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="2">
+					<div align="right">
+						<p:commandButton value="OK"
+							actionListener="#{agendaManagedBean.agendarServico}"
+							update=":idTabView:frmAgenda"
+							oncomplete="if(!args.validationFailed){ PF('dialogAgendarServico').hide();
+										PF('myschedule').update();} 
+										else {PF('dialogAgendarServico').show();}" />
+					</div>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</h:form>
+</p:dialog>
+</html>

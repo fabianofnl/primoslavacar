@@ -19,8 +19,8 @@ public class AgendaViewBean implements Serializable {
 	private Integer id;
 	private ServicoViewBean servico;
 	private ClienteViewBean cliente;
-	private Date dataHoraInicio;
-	private Date dataHoraFim;
+	private Date dataInicio;
+	private Date dataFim;
 
 	public AgendaViewBean() {
 	}
@@ -49,19 +49,19 @@ public class AgendaViewBean implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public Date getDataHoraInicio() {
-		return dataHoraInicio;
+	public Date getDataInicio() {
+		return dataInicio;
 	}
 
-	public void setDataHoraInicio(Date dataHoraInicio) {
-		this.dataHoraInicio = dataHoraInicio;
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 
-	public Date getDataHoraFim() {
-		return dataHoraFim;
+	public Date getDataFim() {
+		return dataFim;
 	}
 
-	public void setDataHoraFim(Date dataHoraFim) {
-		this.dataHoraFim = dataHoraFim;
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
 	}
 }

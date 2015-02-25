@@ -53,4 +53,14 @@ public interface ClienteModel {
 	 */
 	public void inativar(Long cpf) throws ClassNotFoundException, SQLException;
 
+	/**
+	 * Método que retorna uma lista de todos os clientes ativos
+	 * 
+	 * @return List<ClienteViewBean>
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public List<ClienteViewBean> listarClientesAtivos()
+			throws ClassNotFoundException, SQLException;
+
 }

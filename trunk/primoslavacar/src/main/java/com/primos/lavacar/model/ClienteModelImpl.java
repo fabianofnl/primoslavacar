@@ -33,6 +33,9 @@ public class ClienteModelImpl implements ClienteModel {
 
 	private static final String INATIVAR_CLIENTE = "UPDATE cliente SET status = 'Inativo' WHERE cpf = ?";
 
+	private static final String SELECT_LISTA_CLIENTES_ATIVOS = "SELECT * FROM cliente WHERE status LIKE 'Ativo' "
+			+ "ORDER BY nome";
+
 	/**
 	 * Método que retorna uma lista de todos os clientes cadastrados
 	 * 
@@ -162,5 +165,38 @@ public class ClienteModelImpl implements ClienteModel {
 			pstmt.close();
 		if (conn != null)
 			conn.close();
+	}
+
+	@Override
+	public List<ClienteViewBean> listarClientesAtivos()
+			throws ClassNotFoundException, SQLException {
+
+		LOG.info("Chamando método listarClienteAtivos");
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		conn = ConexaoBaseDados.getConexaoInstance();
+		pstmt = conn.prepareStatement(SELECT_LISTA_CLIENTES_ATIVOS);
+		rs = pstmt.executeQuery();
+
+		List<ClienteViewBean> listaClientes = new ArrayList<ClienteViewBean>();
+		ClienteViewBean cliente;
+
+		while (rs.next()) {
+			cliente = new ClienteViewBean();
+			cliente.setCpf(rs.getLong("cpf"));
+			cliente.setCpfAntigo(rs.getLong("cpf"));
+			cliente.setNome(rs.getString("nome"));
+			cliente.setEmail(rs.getString("email"));
+			cliente.setEnderecoNumero(rs.getString("endereconumero"));
+			cliente.setTelefone(rs.getLong("telefone"));
+			cliente.setStatus(rs.getString("status"));
+			listaClientes.add(cliente);
+		}
+
+		fecharConexao(rs, pstmt, conn);
+
+		return listaClientes;
 	}
 }

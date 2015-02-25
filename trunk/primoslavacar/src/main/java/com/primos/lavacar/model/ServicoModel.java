@@ -53,4 +53,14 @@ public interface ServicoModel {
 	public void inativar(ServicoViewBean servicoSelecionado)
 			throws ClassNotFoundException, SQLException;
 
+	/**
+	 * Método que retorna uma lista de serviços ativos
+	 * 
+	 * @return List<ServicoViewBean>
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public List<ServicoViewBean> listarServicosAtivos()
+			throws ClassNotFoundException, SQLException;
+
 }

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS agenda;
 DROP TABLE IF EXISTS servico;
 DROP TABLE IF EXISTS cliente;
 DROP TABLE IF EXISTS funcionario;
@@ -39,6 +40,15 @@ CREATE TABLE servico (
 	descricao TEXT NOT NULL,
 	valor NUMERIC(18,2) NOT NULL,
 	status VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE agenda (
+	id SERIAL NOT NULL PRIMARY KEY,
+	idServico INTEGER NOT NULL REFERENCES servico(id),
+	cpf NUMERIC(11) NOT NULL REFERENCES cliente(cpf),
+	dataInicio TIMESTAMP NOT NULL,
+	dataFim TIMESTAMP NOT NULL,
+	baixa BOOLEAN NOT NULL
 );
 
 INSERT INTO perfil (descricao, roleName) VALUES ('Administrador', 'ROLE_ADMIN'); -- 1
