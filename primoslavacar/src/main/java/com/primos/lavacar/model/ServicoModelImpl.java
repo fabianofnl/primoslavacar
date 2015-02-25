@@ -32,6 +32,9 @@ public class ServicoModelImpl implements ServicoModel {
 
 	private static final String INATIVAR_SERVICO = "UPDATE servico SET status = 'Inativo' WHERE id = ?";
 
+	private static final String SELECT_SERVICOS_ATIVOS = "SELECT * FROM servico WHERE status LIKE 'Ativo' "
+			+ "ORDER BY valor";
+
 	/**
 	 * Método que retorna uma lista de serviços
 	 * 
@@ -155,5 +158,42 @@ public class ServicoModelImpl implements ServicoModel {
 			pstmt.close();
 		if (conn != null)
 			conn.close();
+	}
+
+	/**
+	 * Método que retorna uma lista de serviços ativos
+	 * 
+	 * @return List<ServicoViewBean>
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public List<ServicoViewBean> listarServicosAtivos()
+			throws ClassNotFoundException, SQLException {
+
+		LOG.info("Chamando método listarServicosAtivos");
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		conn = ConexaoBaseDados.getConexaoInstance();
+		pstmt = conn.prepareStatement(SELECT_SERVICOS_ATIVOS);
+		rs = pstmt.executeQuery();
+
+		List<ServicoViewBean> listaServicos = new ArrayList<ServicoViewBean>();
+		ServicoViewBean servicoViewBean = null;
+
+		while (rs.next()) {
+			servicoViewBean = new ServicoViewBean();
+			servicoViewBean.setId(rs.getInt("id"));
+			servicoViewBean.setNome(rs.getString("nome"));
+			servicoViewBean.setDescricao(rs.getString("descricao"));
+			servicoViewBean.setValor(rs.getDouble("valor"));
+			servicoViewBean.setStatus(rs.getString("status"));
+			listaServicos.add(servicoViewBean);
+		}
+
+		fecharConexao(rs, pstmt, conn);
+
+		return listaServicos;
 	}
 }

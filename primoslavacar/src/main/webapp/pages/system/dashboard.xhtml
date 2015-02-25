@@ -16,14 +16,14 @@
 				Agendamento
 				<p:separator />
 			</div>
-			<!-- 
+
 			<h:form id="frmRemoteCommand">
 				<p:remoteCommand name="onloadTabela"
-					actionListener="#{dashboardManagedBean.carregarTabela}"
-					autoRun="true" update=":frmDashboardAgenda:dashboardAgenda" />
+					actionListener="#{agendaManagedBean.carregarTabela}" autoRun="true"
+					update=":idTabView:schedule :idTabView:frmAgenda :idDialogAgendarServico" />
 			</h:form>
- 			-->
-			<p:tabView>
+
+			<p:tabView id="idTabView">
 				<p:tab title="Agenda">
 					<p:schedule id="schedule"
 						value="#{agendaManagedBean.eventModelAgenda}"
@@ -31,10 +31,11 @@
 
 						<p:ajax event="dateSelect"
 							listener="#{agendaManagedBean.selecionarData}"
-							oncomplete="PF('eventDialog').show();" />
+							update=":idDialogAgendarServico"
+							oncomplete="PF('dialogAgendarServico').show();" />
 						<p:ajax event="eventSelect"
 							listener="#{agendaManagedBean.selecionarServico}"
-							oncomplete="PF('eventDialog').show();" />
+							oncomplete="PF('dialogAgendarServico').show();" />
 						<p:ajax event="eventMove"
 							listener="#{agendaManagedBean.moverServico}" />
 						<p:ajax event="eventResize"
@@ -46,33 +47,41 @@
 
 				<p:tab title="Baixa de serviços">
 					<h:form id="frmAgenda">
-						<p:dataTable value="#{dashboardManagedBean.listaAgendamentos}"
-						emptyMessage="Não há registros"
-							var="agend">
+						<p:dataTable value="#{agendaManagedBean.listaAgendamentos}"
+							emptyMessage="Não há registros" var="agend">
 							<p:column headerText="Serviço">
 								<h:outputText value="#{agend.servico.nome}" />
 							</p:column>
-	
+
 							<p:column headerText="Cliente">
 								<h:outputText value="#{agend.cliente.nome}" />
 							</p:column>
-	
+
 							<p:column headerText="Data">
-								<h:outputText value="#{agend.data}" />
+								<h:outputText value="#{agend.dataInicio}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm"
+										timeZone="America/Sao_Paulo" />
+								</h:outputText>
 							</p:column>
-	
+
 							<p:column headerText="Valor">
-								<h:outputText value="#{agend.servico.valor}" />
+								<h:outputText value="#{agend.servico.valor}">
+									<f:convertNumber currencySymbol="R$ " type="currency"
+										maxFractionDigits="2" locale="pt_BR" />
+								</h:outputText>
 							</p:column>
-							
-							<p:column headerText="Ações">
-								<p:commandButton icon="ui-icon-check" title="Baixa no serviço"/>
-								<p:commandButton icon="ui-icon-close" title="Cancelar agendamento"/>
+
+							<p:column headerText="Ações" styleClass="centralizar">
+								<p:commandButton icon="ui-icon-check" title="Baixa no serviço" />
+								<p:commandButton icon="ui-icon-close"
+									title="Cancelar serviço" />
 							</p:column>
 						</p:dataTable>
 					</h:form>
 				</p:tab>
 			</p:tabView>
+
+			<ui:include src="/pages/dialog/dialog_agendar_servico.xhtml" />
 
 		</div>
 	</ui:define>
