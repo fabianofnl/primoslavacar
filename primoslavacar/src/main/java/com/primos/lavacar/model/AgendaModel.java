@@ -20,4 +20,7 @@ public interface AgendaModel {
 	public void agendarServico(AgendaViewBean agendamento)
 			throws ClassNotFoundException, SQLException;
 
+	public void cancelarServico(AgendaViewBean agendamentoSelecionado)
+			throws ClassNotFoundException, SQLException;
+
 }

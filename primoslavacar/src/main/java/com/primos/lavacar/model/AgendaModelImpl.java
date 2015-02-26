@@ -40,6 +40,8 @@ public class AgendaModelImpl implements AgendaModel {
 	private static final String INSERT_AGENDAMENTO = "INSERT INTO agenda (idServico, cpf, dataInicio, dataFim, baixa) "
 			+ "VALUES (?, ?, ?, ?, ?)";
 
+	private static final String DELETE_AGENDAMENTO = "DELETE FROM agenda WHERE id = ?";
+
 	public List<AgendaViewBean> listarAgendamentos()
 			throws ClassNotFoundException, SQLException {
 		LOG.info("Chamando método listarAgendamentos");
@@ -160,6 +162,21 @@ public class AgendaModelImpl implements AgendaModel {
 		fecharConexao(null, pstmt, conn);
 	}
 
+	public void cancelarServico(AgendaViewBean agendamentoSelecionado)
+			throws ClassNotFoundException, SQLException {
+
+		LOG.info("Chamando método cancelarServico");
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		conn = ConexaoBaseDados.getConexaoInstance();
+		pstmt = conn.prepareStatement(DELETE_AGENDAMENTO);
+		pstmt.setInt(1, agendamentoSelecionado.getId());
+		pstmt.execute();
+
+		fecharConexao(null, pstmt, conn);
+	}
+
 	private void fecharConexao(ResultSet rs, PreparedStatement pstmt,
 			Connection conn) throws SQLException {
 		if (rs != null)
@@ -169,4 +186,5 @@ public class AgendaModelImpl implements AgendaModel {
 		if (conn != null)
 			conn.close();
 	}
+
 }
