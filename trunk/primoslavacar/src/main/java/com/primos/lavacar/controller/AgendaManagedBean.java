@@ -109,14 +109,13 @@ public class AgendaManagedBean implements Serializable {
 			} else {
 				// eventModelAgenda.updateEvent(eventAgenda);
 			}
-			carregarTabela(event);
-			limparSessao();
-
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",
 							"Serviço agendado com sucesso."));
 
+			carregarTabela(event);
+			limparSessao();
 		} catch (ClassNotFoundException e) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
@@ -158,13 +157,34 @@ public class AgendaManagedBean implements Serializable {
 	}
 
 	public void cancelarServico(ActionEvent event) {
-
+		try {
+			agendaModel.cancelarServico(agendamentoSelecionado);
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",
+							"Serviço cancelado com sucesso."));
+			limparSessao();
+			carregarTabela(event);
+		} catch (ClassNotFoundException e) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "Erro",
+							"Houve um erro na aplicação, tente mais tarde"));
+			LOG.error("Driver do banco de dados não encontrado", e);
+		} catch (SQLException e) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "Erro",
+							"Houve um erro na aplicação, tente mais tarde"));
+			LOG.error("Houve um problema na query do banco de dados", e);
+		}
 	}
 
 	private void limparSessao() {
 		eventAgenda = new DefaultScheduleEvent();
 		servicoSelecionado = new ServicoViewBean();
 		clienteSelecionado = new ClienteViewBean();
+		agendamentoSelecionado = new AgendaViewBean();
 	}
 
 	public List<ServicoViewBean> getListaServicos() {

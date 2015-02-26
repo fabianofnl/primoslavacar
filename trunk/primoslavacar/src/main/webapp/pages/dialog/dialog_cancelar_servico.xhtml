@@ -8,21 +8,21 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:confirmDialog id="idDialogCancelarServico"
-	header="Inativar Cliente" widgetVar="dialogCancelarServico"
+	header="Cancelar Serviço" widgetVar="dialogCancelarServico"
 	appendTo="@(body)"
-	message="Servico: #{agendaManagedBean.agendamentoSelecionado.servico.nome}, 
+	message="Serviço: #{agendaManagedBean.agendamentoSelecionado.servico.nome}, 
 			cliente: #{agendaManagedBean.agendamentoSelecionado.cliente.nome} será cancelado(a). Você tem certeza?"
 	severity="alert">
 	<div align="right">
 		<h:form id="frmDialogCancelarServico">
 			<p:commandButton value="Sim"
 				actionListener="#{agendaManagedBean.cancelarServico}"
-				update=":frmClienteDataTable"
-				oncomplete="if(!args.validationFailed) PF('dialogCancelarServico').hide(); 
-							else PF('dialogCancelarServico').show();" />
+				update=":idTabView:frmAgenda :idGrowl :idTabView:frmSchedule"
+				oncomplete="if(!args.validationFailed){ PF('dialogCancelarServico').hide();} 
+							else {PF('dialogCancelarServico').show();}" />
 
 			<p:commandButton value="Não" type="button"
-				onclick="PF('dialogInativarCliente').hide()" />
+				onclick="PF('dialogCancelarServico').hide()" />
 		</h:form>
 	</div>
 </p:confirmDialog>

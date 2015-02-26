@@ -76,9 +76,8 @@
 					<div align="right">
 						<p:commandButton value="OK"
 							actionListener="#{agendaManagedBean.agendarServico}"
-							update=":idTabView:frmAgenda :idgrowl"
-							oncomplete="if(!args.validationFailed){ PF('dialogAgendarServico').hide();
-										PF('myschedule').update();} 
+							update=":idTabView:frmAgenda :idTabView:frmSchedule"
+							oncomplete="if(!args.validationFailed){ PF('dialogAgendarServico').hide();} 
 										else {PF('dialogAgendarServico').show();}" />
 					</div>
 				</p:column>
