@@ -49,6 +49,7 @@ public class AgendaManagedBean implements Serializable {
 	private static final Logger LOG = Logger.getLogger(AgendaManagedBean.class);
 
 	private AgendaViewBean agendamento = new AgendaViewBean();
+	private AgendaViewBean agendamentoSelecionado = new AgendaViewBean();
 	private ServicoViewBean servicoSelecionado = new ServicoViewBean();
 	private ClienteViewBean clienteSelecionado = new ClienteViewBean();
 
@@ -102,10 +103,6 @@ public class AgendaManagedBean implements Serializable {
 
 			if (eventAgenda.getId() == null) {
 				// eventModelAgenda.addEvent(eventAgenda);
-				LOG.info("CPF cliente: " + clienteSelecionado.getCpf()
-						+ ", ID serviço: " + servicoSelecionado.getId()
-						+ ", data Ini: " + agendamento.getDataInicio()
-						+ ", dataF: " + agendamento.getDataFim());
 				agendamento.setCliente(clienteSelecionado);
 				agendamento.setServico(servicoSelecionado);
 				agendaModel.agendarServico(agendamento);
@@ -156,6 +153,14 @@ public class AgendaManagedBean implements Serializable {
 		LOG.info("Redimensionar Serviço");
 	}
 
+	public void baixarServico(ActionEvent event) {
+
+	}
+
+	public void cancelarServico(ActionEvent event) {
+
+	}
+
 	private void limparSessao() {
 		eventAgenda = new DefaultScheduleEvent();
 		servicoSelecionado = new ServicoViewBean();
@@ -201,6 +206,14 @@ public class AgendaManagedBean implements Serializable {
 
 	public void setAgendamento(AgendaViewBean agendamento) {
 		this.agendamento = agendamento;
+	}
+
+	public AgendaViewBean getAgendamentoSelecionado() {
+		return agendamentoSelecionado;
+	}
+
+	public void setAgendamentoSelecionado(AgendaViewBean agendamentoSelecionado) {
+		this.agendamentoSelecionado = agendamentoSelecionado;
 	}
 
 	public ServicoViewBean getServicoSelecionado() {

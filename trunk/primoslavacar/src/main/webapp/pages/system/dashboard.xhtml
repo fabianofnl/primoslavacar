@@ -9,7 +9,8 @@
 <ui:composition template="/pages/template/system_template.xhtml">
 	<ui:define name="content">
 		<div class="div-content">
-			<p:growl autoUpdate="true" showDetail="true" showSummary="true"
+
+			<p:growl id="idgrowl" autoUpdate="true" showDetail="true" showSummary="true"
 				life="10000" />
 
 			<div align="center" class="header-title-page">
@@ -20,28 +21,29 @@
 			<h:form id="frmRemoteCommand">
 				<p:remoteCommand name="onloadTabela"
 					actionListener="#{agendaManagedBean.carregarTabela}" autoRun="true"
-					update=":idTabView:schedule :idTabView:frmAgenda :idDialogAgendarServico" />
+					update=":idTabView:frmSchedule:schedule :idTabView:frmAgenda :idDialogAgendarServico" />
 			</h:form>
 
 			<p:tabView id="idTabView">
 				<p:tab title="Agenda">
-					<p:schedule id="schedule"
-						value="#{agendaManagedBean.eventModelAgenda}"
-						widgetVar="myschedule" timeZone="America/Sao_Paulo">
+					<h:form id="frmSchedule">
+						<p:schedule id="schedule"
+							value="#{agendaManagedBean.eventModelAgenda}"
+							widgetVar="myschedule" timeZone="America/Sao_Paulo">
 
-						<p:ajax event="dateSelect"
-							listener="#{agendaManagedBean.selecionarData}"
-							update=":idDialogAgendarServico"
-							oncomplete="PF('dialogAgendarServico').show();" />
-						<p:ajax event="eventSelect"
-							listener="#{agendaManagedBean.selecionarServico}"
-							oncomplete="PF('dialogAgendarServico').show();" />
-						<p:ajax event="eventMove"
-							listener="#{agendaManagedBean.moverServico}" />
-						<p:ajax event="eventResize"
-							listener="#{agendaManagedBean.redimensionarServico}" />
-
-					</p:schedule>
+							<p:ajax event="dateSelect"
+								listener="#{agendaManagedBean.selecionarData}"
+								update=":idDialogAgendarServico"
+								oncomplete="PF('dialogAgendarServico').show();" />
+							<p:ajax event="eventSelect"
+								listener="#{agendaManagedBean.selecionarServico}"
+								oncomplete="PF('dialogAgendarServico').show();" />
+							<p:ajax event="eventMove"
+								listener="#{agendaManagedBean.moverServico}" />
+							<p:ajax event="eventResize"
+								listener="#{agendaManagedBean.redimensionarServico}" />
+						</p:schedule>
+					</h:form>
 
 				</p:tab>
 
@@ -73,8 +75,7 @@
 
 							<p:column headerText="Ações" styleClass="centralizar">
 								<p:commandButton icon="ui-icon-check" title="Baixa no serviço" />
-								<p:commandButton icon="ui-icon-close"
-									title="Cancelar serviço" />
+								<p:commandButton icon="ui-icon-close" title="Cancelar serviço" />
 							</p:column>
 						</p:dataTable>
 					</h:form>
