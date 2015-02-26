@@ -48,7 +48,7 @@
 				<p:column>
 					<p:calendar id="dtInicio" timeZone="America/Sao_Paulo"
 						value="#{agendaManagedBean.agendamento.dataInicio}"
-						pattern="dd/MM/yyyy" />
+						pattern="dd/MM/yyyy HH:mm:ss" />
 				</p:column>
 
 
@@ -61,7 +61,7 @@
 				<p:column>
 					<p:calendar id="dtFim" timeZone="America/Sao_Paulo"
 						value="#{agendaManagedBean.agendamento.dataFim}"
-						pattern="dd/MM/yyyy" />
+						pattern="dd/MM/yyyy HH:mm:ss" />
 				</p:column>
 			</p:row>
 
@@ -76,7 +76,7 @@
 					<div align="right">
 						<p:commandButton value="OK"
 							actionListener="#{agendaManagedBean.agendarServico}"
-							update=":idTabView:frmAgenda"
+							update=":idTabView:frmAgenda :idgrowl"
 							oncomplete="if(!args.validationFailed){ PF('dialogAgendarServico').hide();
 										PF('myschedule').update();} 
 										else {PF('dialogAgendarServico').show();}" />

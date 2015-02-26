@@ -59,10 +59,10 @@ public class AgendaModelImpl implements AgendaModel {
 		while (rs.next()) {
 			agenda = new AgendaViewBean();
 			agenda.setId(rs.getInt("idagenda"));
-			agenda.setDataInicio(rs.getDate("dataInicio") == null ? null
-					: new Date(rs.getDate("dataInicio").getTime()));
-			agenda.setDataFim(rs.getDate("dataInicio") == null ? null
-					: new Date(rs.getDate("dataFim").getTime()));
+			agenda.setDataInicio(rs.getTimestamp("dataInicio") == null ? null
+					: new Date(rs.getTimestamp("dataInicio").getTime()));
+			agenda.setDataFim(rs.getTimestamp("dataInicio") == null ? null
+					: new Date(rs.getTimestamp("dataFim").getTime()));
 
 			cliente = new ClienteViewBean();
 			cliente.setCpf(rs.getLong("cpf"));
@@ -109,10 +109,10 @@ public class AgendaModelImpl implements AgendaModel {
 		while (rs.next()) {
 			agenda = new AgendaViewBean();
 			agenda.setId(rs.getInt("idagenda"));
-			agenda.setDataInicio(rs.getDate("dataInicio") == null ? null
-					: new Date(rs.getDate("dataInicio").getTime()));
-			agenda.setDataFim(rs.getDate("dataInicio") == null ? null
-					: new Date(rs.getDate("dataFim").getTime()));
+			agenda.setDataInicio(rs.getTimestamp("dataInicio") == null ? null
+					: new Date(rs.getTimestamp("dataInicio").getTime()));
+			agenda.setDataFim(rs.getTimestamp("dataInicio") == null ? null
+					: new Date(rs.getTimestamp("dataFim").getTime()));
 
 			cliente = new ClienteViewBean();
 			cliente.setCpf(rs.getLong("cpf"));
@@ -169,5 +169,4 @@ public class AgendaModelImpl implements AgendaModel {
 		if (conn != null)
 			conn.close();
 	}
-
 }
