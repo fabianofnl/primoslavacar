@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/pages/template/system_template.xhtml">
+	<ui:define name="content">
+		<div class="div-content">
+
+			<p:growl autoUpdate="true" showDetail="true" showSummary="true"
+				life="10000" />
+
+			<div align="center" class="header-title-page">
+				Contas
+				<p:separator />
+			</div>
+
+			<h:form id="frmRemoteCommand">
+				<p:remoteCommand name="onloadTabela"
+					actionListener="#{contaManagedBean.carregarTabela}"
+					autoRun="true" update=":frmContaDataTable:contaDataTable" />
+			</h:form>
+
+			<h:form id="frmContaDataTable">
+				<p:dataTable id="contaDataTable" rows="5"
+					rowsPerPageTemplate="5,10,15" paginator="true"
+					emptyMessage="Não há registros."
+					value="#{contaManagedBean.listaContas}" var="cont"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{cont.nome}"/>
+					</p:column>
+
+					<p:column headerText="Descrição">
+						<h:outputText escape="false" value="#{cont.descricao}" />
+					</p:column>
+
+					<p:column headerText="Status">
+						<h:outputText value="#{cont.status}" />
+					</p:column>
+
+					<p:column headerText="Ações" styleClass="centralizar">
+						<p:commandButton id="btnEdit" title="Editar" icon="ui-icon-wrench"
+							style="width:22px; height:22px;"
+							oncomplete="PF('dialogEditConta').show()"
+							update=":idDialogEditConta">
+							<f:setPropertyActionListener
+								target="#{contaManagedBean.contaSelecionada}"
+								value="#{cont}" />
+						</p:commandButton>
+
+						<p:commandButton id="btnIna" title="Inativar" icon="ui-icon-power"
+							style="width:22px; height:22px;"
+							oncomplete="PF('dialogInativarConta').show()"
+							update=":idDialogInativarConta">
+							<f:setPropertyActionListener
+								target="#{contaManagedBean.contaSelecionada}"
+								value="#{cont}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:commandButton value="Adicionar conta"
+					style="margin-top: 10px;"
+					oncomplete="PF('dialogCadConta').show()"
+					update=":idDialogCadConta" />
+
+			</h:form>
+
+			<ui:include src="/pages/dialog/dialog_cadastrar_conta.xhtml" />
+
+			<ui:include src="/pages/dialog/dialog_editar_conta.xhtml" />
+
+			<ui:include src="/pages/dialog/dialog_inativar_conta.xhtml" />
+
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

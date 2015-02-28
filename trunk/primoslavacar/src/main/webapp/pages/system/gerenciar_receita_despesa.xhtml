@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/pages/template/system_template.xhtml">
+	<ui:define name="content">
+		<div class="div-content">
+
+			<p:growl autoUpdate="true" showDetail="true" showSummary="true"
+				life="10000" />
+
+			<div align="center" class="header-title-page">
+				Receita/Despesa
+				<p:separator />
+			</div>
+
+			<h:form id="frmRemoteCommand">
+				<p:remoteCommand name="onloadTabela"
+					actionListener="#{receitaDespesaManagedBean.carregarTabela}"
+					autoRun="true" />
+			</h:form>
+
+			<p:tabView id="idTabView">
+				<p:tab title="Receita">
+				</p:tab>
+
+				<p:tab title="Despesa">
+				</p:tab>
+
+			</p:tabView>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>
