@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:dialog id="idDialogEditConta" header="Editar Conta" width="502"
+	widgetVar="dialogEditConta" appendTo="@(body)" modal="true"
+	dynamic="true" resizable="false">
+
+	<h:form id="frmDialogEditConta">
+		<p:panelGrid style="width: 100%;" styleClass="tableBorderNone">
+			<p:row>
+
+				<p:column>
+					<h:outputLabel value="Nome:" />
+				</p:column>
+				<p:column>
+					<p:inputText value="#{contaManagedBean.contaSelecionada.nome}"
+						size="46" required="true"
+						requiredMessage="Campo nome é obrigatório." />
+				</p:column>
+			</p:row>
+
+			<p:row>
+
+				<p:column>
+					<h:outputLabel value="Descrição:" />
+				</p:column>
+				<p:column>
+					<p:editor required="true"
+						requiredMessage="Campo descrição é obrigatório."
+						value="#{contaManagedBean.contaSelecionada.descricao}"
+						widgetVar="descricao" width="350" />
+				</p:column>
+
+			</p:row>
+
+			<p:row>
+				<p:column>
+					<h:outputLabel value="Status:" />
+				</p:column>
+				<p:column>
+					<p:selectOneMenu id="selectStatus" effectDuration="100"
+						required="true" requiredMessage="O campo status é obrigatório."
+						value="#{contaManagedBean.contaSelecionada.status}">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItem itemLabel="Ativo" itemValue="Ativo" />
+						<f:selectItem itemLabel="Inativo" itemValue="Inativo" />
+					</p:selectOneMenu>
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="2">
+					<p:separator />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column colspan="2">
+					<div align="right">
+						<p:commandButton value="Cancelar" type="button"
+							onclick="PF('dialogEditConta').hide()" />
+						<p:commandButton value="OK"
+							actionListener="#{contaManagedBean.editarConta}"
+							update="frmDialogEditConta :frmContaDataTable"
+							oncomplete="if(!args.validationFailed) PF('dialogEditConta').hide(); 
+										else PF('dialogEditConta').show();" />
+					</div>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</h:form>
+</p:dialog>
+</html>

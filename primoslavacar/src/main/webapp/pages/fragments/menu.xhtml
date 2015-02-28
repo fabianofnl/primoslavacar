@@ -19,8 +19,7 @@
 			<p:separator style="margin-bottom: 5px;" />
 		</p:submenu>
 		<p:submenu label="HOME">
-			<p:menuitem value="Dashboard"
-				url="/pages/system/dashboard.jsf" />
+			<p:menuitem value="Dashboard" url="/pages/system/dashboard.jsf" />
 		</p:submenu>
 
 		<p:submenu label="CLIENTE"
@@ -41,11 +40,16 @@
 				url="/pages/system/gerenciar_servico.jsf" />
 		</p:submenu>
 
-		<p:submenu label="GERENCIAMENTO"
+		<p:submenu label="CONTAS"
 			rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN' or loginManagedBean.funcionario.role eq 'ROLE_INSTRUTOR'}">
-			<p:menuitem value="Contas a Pagar"
-				url="/pages/system/gerenciar_agenda.jsf" />
-			
+			<p:menuitem value="Gerenciar Contas" url="/pages/system/gerenciar_contas.jsf"/>
+			<p:menuitem value="Receita/Despesa"
+				url="/pages/system/gerenciar_receita_despesa.jsf" />
+		</p:submenu>
+
+		<p:submenu label="RELATÓRIO"
+			rendered="#{loginManagedBean.funcionario.role eq 'ROLE_ADMIN' or loginManagedBean.funcionario.role eq 'ROLE_INSTRUTOR'}">
+
 			<p:menuitem value="Fluxo de Caixa"
 				url="/pages/system/fluxo_caixa.jsf" />
 		</p:submenu>

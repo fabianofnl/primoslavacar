@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:dialog id="idDialogCadConta" header="Cadastrar Conta"
+	widgetVar="dialogCadConta" dynamic="true" modal="true"
+	appendTo="@(body)" resizable="false" width="502">
+
+	<h:form id="frmDialogCadConta">
+		<p:panelGrid style="width: 100%;" styleClass="tableBorderNone">
+			<p:row>
+
+				<p:column>
+					<h:outputLabel value="Nome:" />
+				</p:column>
+				<p:column>
+					<p:inputText value="#{contaManagedBean.contaNova.nome}"
+						size="46" required="true"
+						requiredMessage="Campo nome é obrigatório." />
+				</p:column>
+			</p:row>
+
+			<p:row>
+
+				<p:column>
+					<h:outputLabel value="Descrição:" />
+				</p:column>
+				<p:column>
+					<p:editor required="true"
+						requiredMessage="Campo descrição é obrigatório."
+						value="#{contaManagedBean.contaNova.descricao}"
+						widgetVar="descricao" width="350" />
+
+				</p:column>
+
+			</p:row>
+
+			<p:row>
+				<p:column colspan="2">
+					<p:separator />
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="2">
+					<div align="right">
+						<p:commandButton value="Cancelar" type="button"
+							onclick="PF('dialogCadConta').hide()" />
+						<p:commandButton value="OK"
+							actionListener="#{contaManagedBean.cadastrarConta}"
+							update="frmDialogCadConta :frmContaDataTable"
+							oncomplete="if(!args.validationFailed) PF('dialogCadConta').hide(); 
+										else PF('dialogCadConta').show();" />
+					</div>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</h:form>
+</p:dialog>
+</html>
