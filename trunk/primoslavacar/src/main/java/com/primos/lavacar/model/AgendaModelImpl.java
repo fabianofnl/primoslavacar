@@ -42,6 +42,11 @@ public class AgendaModelImpl implements AgendaModel {
 
 	private static final String DELETE_AGENDAMENTO = "DELETE FROM agenda WHERE id = ?";
 
+	private static final String BAIXAR_SERVICO_AGENDAMENTO = "BEGIN; "
+			+ "UPDATE agenda SET baixa = true WHERE id = ?; "
+			+ "INSERT INTO fluxocaixa (titulo, tipo, dataProcessamento, valor) VALUES (?, 'R', ?, ?); "
+			+ "COMMIT;";
+
 	public List<AgendaViewBean> listarAgendamentos()
 			throws ClassNotFoundException, SQLException {
 		LOG.info("Chamando método listarAgendamentos");
@@ -177,6 +182,26 @@ public class AgendaModelImpl implements AgendaModel {
 		fecharConexao(null, pstmt, conn);
 	}
 
+	public void baixarServico(AgendaViewBean agendamentoSelecionado)
+			throws ClassNotFoundException, SQLException {
+
+		LOG.info("Chamando método baixarServico");
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		conn = ConexaoBaseDados.getConexaoInstance();
+		pstmt = conn.prepareStatement(BAIXAR_SERVICO_AGENDAMENTO);
+		pstmt.setInt(1, agendamentoSelecionado.getId());
+		pstmt.setString(2, agendamentoSelecionado.getServico().getNome());
+		pstmt.setDate(3, new java.sql.Date(new Date().getTime()));
+		pstmt.setDouble(4, agendamentoSelecionado.getServico().getValor());
+
+		pstmt.execute();
+
+		fecharConexao(null, pstmt, conn);
+
+	}
+
 	private void fecharConexao(ResultSet rs, PreparedStatement pstmt,
 			Connection conn) throws SQLException {
 		if (rs != null)
@@ -186,5 +211,4 @@ public class AgendaModelImpl implements AgendaModel {
 		if (conn != null)
 			conn.close();
 	}
-
 }

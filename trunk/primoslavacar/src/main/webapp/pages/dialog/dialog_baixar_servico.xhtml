@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:confirmDialog id="idDialogBaixarServico"
+	header="Baixar Serviço" widgetVar="dialogBaixarServico"
+	appendTo="@(body)"
+	message="Serviço: #{agendaManagedBean.agendamentoSelecionado.servico.nome}, 
+			cliente: #{agendaManagedBean.agendamentoSelecionado.cliente.nome} será baixado. Você tem certeza?"
+	severity="alert">
+	<div align="right">
+		<h:form id="frmDialogBaixarServico">
+			<p:commandButton value="Sim"
+				actionListener="#{agendaManagedBean.baixarServico}"
+				update=":idTabView:frmAgenda :idGrowl :idTabView:frmSchedule"
+				oncomplete="if(!args.validationFailed){ PF('dialogBaixarServico').hide();} 
+							else {PF('dialogBaixarServico').show();}" />
+
+			<p:commandButton value="Não" type="button"
+				onclick="PF('dialogBaixarServico').hide()" />
+		</h:form>
+	</div>
+</p:confirmDialog>
+</html>
