@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS fluxocaixa;
 DROP TABLE IF EXISTS conta;
 DROP TABLE IF EXISTS agenda;
 DROP TABLE IF EXISTS servico;
@@ -57,6 +58,14 @@ CREATE TABLE conta (
 	nome VARCHAR(100) NOT NULL,
 	descricao TEXT NOT NULL,
 	status VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE fluxocaixa (
+	id SERIAL NOT NULL PRIMARY KEY,
+	titulo VARCHAR(100) NOT NULL,
+	tipo VARCHAR(1) NOT NULL,
+	dataProcessamento DATE NOT NULL,
+	valor NUMERIC(18,2) NOT NULL
 );
 
 INSERT INTO perfil (descricao, roleName) VALUES ('Administrador', 'ROLE_ADMIN'); -- 1

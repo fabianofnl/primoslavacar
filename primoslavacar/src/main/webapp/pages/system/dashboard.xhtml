@@ -50,7 +50,7 @@
 
 				<p:tab title="Baixa de serviços">
 					<h:form id="frmAgenda">
-						<p:dataTable value="#{agendaManagedBean.listaAgendamentos}"
+						<p:dataTable value="#{agendaManagedBean.listaAgendamentosDarBaixa}"
 							emptyMessage="Não há registros" var="agend">
 							<p:column headerText="Serviço">
 								<h:outputText value="#{agend.servico.nome}" />
@@ -76,7 +76,13 @@
 
 							<p:column headerText="Ações" styleClass="centralizar">
 								<p:commandButton icon="ui-icon-check" title="Baixa no serviço"
-									style="width:22px; height:22px;" />
+									update=":idDialogBaixarServico"
+									oncomplete="PF('dialogBaixarServico').show()"
+									style="width:22px; height:22px;">
+									<f:setPropertyActionListener
+										target="#{agendaManagedBean.agendamentoSelecionado}"
+										value="#{agend}" />
+								</p:commandButton>
 
 								<p:commandButton icon="ui-icon-close" title="Cancelar serviço"
 									style="width:22px; height:22px;"
@@ -93,6 +99,8 @@
 			</p:tabView>
 
 			<ui:include src="/pages/dialog/dialog_agendar_servico.xhtml" />
+
+			<ui:include src="/pages/dialog/dialog_baixar_servico.xhtml" />
 
 			<ui:include src="/pages/dialog/dialog_cancelar_servico.xhtml" />
 

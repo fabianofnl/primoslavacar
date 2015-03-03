@@ -153,7 +153,27 @@ public class AgendaManagedBean implements Serializable {
 	}
 
 	public void baixarServico(ActionEvent event) {
-
+		try {
+			agendaModel.baixarServico(agendamentoSelecionado);
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",
+							"Baixa efetuada com sucesso."));
+			carregarTabela(event);
+			limparSessao();
+		} catch (ClassNotFoundException e) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "Erro",
+							"Houve um erro na aplicação, tente mais tarde"));
+			LOG.error("Driver do banco de dados não encontrado", e);
+		} catch (SQLException e) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "Erro",
+							"Houve um erro na aplicação, tente mais tarde"));
+			LOG.error("Houve um problema na query do banco de dados", e);
+		}
 	}
 
 	public void cancelarServico(ActionEvent event) {
