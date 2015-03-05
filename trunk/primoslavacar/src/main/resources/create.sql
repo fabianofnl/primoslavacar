@@ -65,7 +65,8 @@ CREATE TABLE fluxocaixa (
 	titulo VARCHAR(100) NOT NULL,
 	tipo VARCHAR(1) NOT NULL,
 	dataProcessamento DATE NOT NULL,
-	valor NUMERIC(18,2) NOT NULL
+	valor NUMERIC(18,2) NOT NULL,
+	idAgenda INTEGER
 );
 
 INSERT INTO perfil (descricao, roleName) VALUES ('Administrador', 'ROLE_ADMIN'); -- 1

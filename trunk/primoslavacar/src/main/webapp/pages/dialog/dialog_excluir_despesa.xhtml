@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:confirmDialog id="idDialogExcluirDespesa"
+	header="Excluir Despesa" widgetVar="dialogExcluirDespesa"
+	appendTo="@(body)"
+	message="#{receitaDespesaManagedBean.receitaDespesaSelecionado.titulo} será excluída. Você tem certeza?"
+	severity="alert">
+	<div align="right">
+		<h:form id="frmDialogExcluirDespesa">
+			<p:commandButton value="Sim"
+				actionListener="#{receitaDespesaManagedBean.excluirReceitaDespesa}"
+				update=":idTabView:frmDataTableDespesa"
+				oncomplete="if(!args.validationFailed) PF('dialogExcluirDespesa').hide(); 
+							else PF('dialogExcluirDedspesa').show();" />
+
+			<p:commandButton value="Não" type="button"
+				onclick="PF('dialogExcluirDedspesa').hide()" />
+		</h:form>
+	</div>
+</p:confirmDialog>
+</html>

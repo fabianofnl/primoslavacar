@@ -19,4 +19,7 @@ public interface ContaModel {
 	public void inativarConta(ContaViewBean contaSelecionada)
 			throws ClassNotFoundException, SQLException;
 
+	public List<ContaViewBean> listarContasAtivas()
+			throws ClassNotFoundException, SQLException;
+
 }

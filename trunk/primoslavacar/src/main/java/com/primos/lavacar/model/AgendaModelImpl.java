@@ -44,7 +44,7 @@ public class AgendaModelImpl implements AgendaModel {
 
 	private static final String BAIXAR_SERVICO_AGENDAMENTO = "BEGIN; "
 			+ "UPDATE agenda SET baixa = true WHERE id = ?; "
-			+ "INSERT INTO fluxocaixa (titulo, tipo, dataProcessamento, valor) VALUES (?, 'R', ?, ?); "
+			+ "INSERT INTO fluxocaixa (titulo, tipo, dataProcessamento, valor, idAgenda) VALUES (?, 'R', ?, ?, ?); "
 			+ "COMMIT;";
 
 	public List<AgendaViewBean> listarAgendamentos()
@@ -195,6 +195,7 @@ public class AgendaModelImpl implements AgendaModel {
 		pstmt.setString(2, agendamentoSelecionado.getServico().getNome());
 		pstmt.setDate(3, new java.sql.Date(new Date().getTime()));
 		pstmt.setDouble(4, agendamentoSelecionado.getServico().getValor());
+		pstmt.setInt(5, agendamentoSelecionado.getId());
 
 		pstmt.execute();
 

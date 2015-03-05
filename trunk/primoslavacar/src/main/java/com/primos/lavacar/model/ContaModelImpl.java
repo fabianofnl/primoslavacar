@@ -24,6 +24,9 @@ public class ContaModelImpl implements ContaModel {
 
 	private static final String INATIVAR_CONTA = "UPDATE conta SET status = 'Inativo' WHERE id = ?";
 
+	private static final String SELECT_LISTA_CONTAS_ATIVAS = "SELECT * FROM conta WHERE status = 'Ativo' "
+			+ "ORDER BY nome";
+
 	public List<ContaViewBean> listarContas() throws ClassNotFoundException,
 			SQLException {
 
@@ -111,15 +114,42 @@ public class ContaModelImpl implements ContaModel {
 
 	}
 
+	@Override
+	public List<ContaViewBean> listarContasAtivas()
+			throws ClassNotFoundException, SQLException {
+		LOG.info("Chamando método listarContas");
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		conn = ConexaoBaseDados.getConexaoInstance();
+		pstmt = conn.prepareStatement(SELECT_LISTA_CONTAS_ATIVAS);
+		rs = pstmt.executeQuery();
+
+		List<ContaViewBean> listaContas = new ArrayList<ContaViewBean>();
+		ContaViewBean conta = null;
+
+		while (rs.next()) {
+			conta = new ContaViewBean();
+			conta.setId(rs.getInt("id"));
+			conta.setNome(rs.getString("nome"));
+			conta.setDescricao(rs.getString("descricao"));
+			conta.setStatus(rs.getString("status"));
+			listaContas.add(conta);
+		}
+
+		fecharConexao(rs, pstmt, conn);
+
+		return listaContas;
+	}
+
 	private void fecharConexao(ResultSet rs, PreparedStatement pstmt,
 			Connection conn) throws SQLException {
-
 		if (rs != null)
 			rs.close();
 		if (pstmt != null)
 			pstmt.close();
 		if (conn != null)
 			conn.close();
-
 	}
 }
