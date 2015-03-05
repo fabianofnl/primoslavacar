@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:dialog id="idDialogEditDespesa" header="Editar Despesa"
+	widgetVar="dialogEditDespesa" dynamic="true" modal="true"
+	appendTo="@(body)" resizable="false" width="502">
+
+	<h:form id="frmDialogEditDespesa">
+		<p:panelGrid style="width: 100%;" styleClass="tableBorderNone">
+			<p:row>
+				<p:column>
+					<h:outputLabel value="Título:" />
+				</p:column>
+				<p:column>
+					<p:selectOneMenu
+						value="#{receitaDespesaManagedBean.receitaDespesaSelecionado.titulo}">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems itemLabel="#{conta.nome}" itemValue="#{conta.nome}"
+							value="#{receitaDespesaManagedBean.listaContas}" var="conta" />
+					</p:selectOneMenu>
+				</p:column>
+			</p:row>
+
+			<p:row>
+
+				<p:column>
+					<h:outputLabel value="Valor:" />
+				</p:column>
+
+				<p:column>
+					<pe:inputNumber required="true"
+						requiredMessage="O campo valor é obrigatório."
+						value="#{receitaDespesaManagedBean.receitaDespesaSelecionado.valor}"
+						symbol="R$ " decimalSeparator="," thousandSeparator="." />
+				</p:column>
+
+			</p:row>
+
+			<p:row>
+				<p:column>
+					<h:outputLabel value="Data:" />
+				</p:column>
+				<p:column>
+					<p:calendar id="dtInicio" timeZone="America/Sao_Paulo"
+						value="#{receitaDespesaManagedBean.receitaDespesaSelecionado.dataProcessamento}"
+						pattern="dd/MM/yyyy" />
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="2">
+					<p:separator />
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="2">
+					<div align="right">
+						<p:commandButton value="Cancelar" type="button"
+							onclick="PF('dialogEditDespesa').hide()" />
+						<p:commandButton value="OK"
+							actionListener="#{receitaDespesaManagedBean.editarDespesa}"
+							update=":frmDialogEditDespesa :idTabView:frmDataTableDespesa"
+							oncomplete="if(!args.validationFailed) PF('dialogEditDespesa').hide(); 
+										else PF('dialogEditDespesa').show();" />
+					</div>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</h:form>
+</p:dialog>
+</html>

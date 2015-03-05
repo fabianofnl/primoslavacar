@@ -28,7 +28,7 @@
 			<p:tabView id="idTabView">
 				<p:tab title="Agenda">
 					<h:form id="frmSchedule">
-						<p:schedule id="schedule"
+						<p:schedule id="schedule" view="agendaWeek"
 							value="#{agendaManagedBean.eventModelAgenda}"
 							widgetVar="myschedule" timeZone="America/Sao_Paulo">
 
@@ -50,8 +50,12 @@
 
 				<p:tab title="Baixa de serviços">
 					<h:form id="frmAgenda">
-						<p:dataTable value="#{agendaManagedBean.listaAgendamentosDarBaixa}"
-							emptyMessage="Não há registros" var="agend">
+						<p:dataTable
+							value="#{agendaManagedBean.listaAgendamentosDarBaixa}"
+							emptyMessage="Não há registros" var="agend" rows="5"
+							rowsPerPageTemplate="5,10,15" paginator="true"
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
 							<p:column headerText="Serviço">
 								<h:outputText value="#{agend.servico.nome}" />
 							</p:column>

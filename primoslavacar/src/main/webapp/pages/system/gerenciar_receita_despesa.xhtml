@@ -22,17 +22,119 @@
 			<h:form id="frmRemoteCommand">
 				<p:remoteCommand name="onloadTabela"
 					actionListener="#{receitaDespesaManagedBean.carregarTabela}"
+					update=":idTabView:frmDataTableReceita :idTabView:frmDataTableDespesa"
 					autoRun="true" />
 			</h:form>
 
 			<p:tabView id="idTabView">
 				<p:tab title="Receita">
+					<h:form id="frmDataTableReceita">
+						<p:dataTable value="#{receitaDespesaManagedBean.listaReceitas}"
+							var="receita" rows="5" rowsPerPageTemplate="5,10,15"
+							paginator="true" emptyMessage="Não há registros."
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+							<p:column headerText="Título">
+								<h:outputText value="#{receita.titulo}" />
+							</p:column>
+
+							<p:column headerText="Tipo">
+								<h:outputText value="#{receita.tipo eq 'R' ? 'Receita' : ''}" />
+							</p:column>
+
+							<p:column headerText="Data">
+								<h:outputText value="#{receita.dataProcessamento}">
+									<f:convertDateTime pattern="dd/MM/yyyy"
+										timeZone="America/Sao_Paulo" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Valor">
+								<h:outputText value="#{receita.valor}">
+									<f:convertNumber currencySymbol="R$ " type="currency"
+										locale="pt_BR" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Ações" styleClass="centralizar">
+								<p:commandButton icon="ui-icon-trash" title="Excluir receita"
+									style="width:22px; height:22px;"
+									update=":idDialogExcluirReceita"
+									oncomplete="PF('dialogExcluirReceita').show()">
+									<f:setPropertyActionListener
+										target="#{receitaDespesaManagedBean.receitaDespesaSelecionado}"
+										value="#{receita}" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+					</h:form>
 				</p:tab>
 
 				<p:tab title="Despesa">
-				</p:tab>
+					<h:form id="frmDataTableDespesa">
+						<p:dataTable value="#{receitaDespesaManagedBean.listaDespesas}"
+							var="despesa" rows="5" rowsPerPageTemplate="5,10,15"
+							paginator="true" emptyMessage="Não há registros."
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
+							<p:column headerText="Título">
+								<h:outputText value="#{despesa.titulo}" />
+							</p:column>
+
+							<p:column headerText="Tipo">
+								<h:outputText value="#{despesa.tipo eq 'D' ? 'Despesa' : ''}" />
+							</p:column>
+
+							<p:column headerText="Data">
+								<h:outputText value="#{despesa.dataProcessamento}">
+									<f:convertDateTime pattern="dd/MM/yyyy"
+										timeZone="America/Sao_Paulo" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Valor">
+								<h:outputText value="#{despesa.valor}">
+									<f:convertNumber currencySymbol="R$ " type="currency"
+										locale="pt_BR" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Ações" styleClass="centralizar">
+								<p:commandButton icon="ui-icon-wrench" title="Editar despesa"
+									style="width:22px; height:22px;"
+									update=":idDialogEditDespesa"
+									oncomplete="PF('dialogEditDespesa').show()">
+									<f:setPropertyActionListener
+										target="#{receitaDespesaManagedBean.receitaDespesaSelecionado}"
+										value="#{despesa}" />
+								</p:commandButton>
+
+								<p:commandButton icon="ui-icon-trash" title="Excluir despesa"
+									style="width:22px; height:22px;"
+									update=":idDialogExcluirDespesa"
+									oncomplete="PF('dialogExcluirDespesa').show()">
+									<f:setPropertyActionListener
+										target="#{receitaDespesaManagedBean.receitaDespesaSelecionado}"
+										value="#{despesa}" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+						<p:commandButton value="Adicionar despesa"
+							style="margin-top: 10px;"
+							oncomplete="PF('dialogCadDespesa').show()"
+							update=":idDialogCadDespesa" />
+					</h:form>
+				</p:tab>
 			</p:tabView>
+
+			<ui:include src="/pages/dialog/dialog_cadastrar_despesa.xhtml" />
+
+			<ui:include src="/pages/dialog/dialog_editar_despesa.xhtml" />
+
+			<ui:include src="/pages/dialog/dialog_excluir_despesa.xhtml" />
+			
+			<ui:include src="/pages/dialog/dialog_excluir_receita.xhtml" />
+
 		</div>
 	</ui:define>
 </ui:composition>
