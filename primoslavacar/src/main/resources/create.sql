@@ -77,3 +77,9 @@ INSERT INTO usuario (usuario, senha, perfilId) VALUES ('apaula', MD5('123'), 2);
 
 INSERT INTO funcionarios (cpf, nome, email, usuario) VALUES (12345678911,'João Silva','jsilva@teste.com','jsilva');
 INSERT INTO funcionarios (cpf, nome, email, usuario) VALUES (12345678922,'Ana Paula','apaula@teste.com','apaula');
+
+-- Ideia para extrair dados mensais
+select to_char(dataProcessamento, 'mm') as mes, dataProcessamento, sum(valor) as valor from fluxocaixa 
+WHERE tipo = 'R' AND extract (year from dataprocessamento) = 2015
+group by 1, 2
+order by 1
