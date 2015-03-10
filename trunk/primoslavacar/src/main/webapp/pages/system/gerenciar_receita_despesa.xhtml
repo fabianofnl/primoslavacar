@@ -57,6 +57,14 @@
 							</p:column>
 
 							<p:column headerText="Ações" styleClass="centralizar">
+								<p:commandButton icon="ui-icon-wrench" title="Editar receita"
+									style="width:22px; height:22px;" update=":idDialogEditReceita"
+									oncomplete="PF('dialogEditReceita').show()">
+									<f:setPropertyActionListener
+										target="#{receitaDespesaManagedBean.receitaDespesaSelecionado}"
+										value="#{receita}" />
+								</p:commandButton>
+
 								<p:commandButton icon="ui-icon-trash" title="Excluir receita"
 									style="width:22px; height:22px;"
 									update=":idDialogExcluirReceita"
@@ -101,8 +109,7 @@
 
 							<p:column headerText="Ações" styleClass="centralizar">
 								<p:commandButton icon="ui-icon-wrench" title="Editar despesa"
-									style="width:22px; height:22px;"
-									update=":idDialogEditDespesa"
+									style="width:22px; height:22px;" update=":idDialogEditDespesa"
 									oncomplete="PF('dialogEditDespesa').show()">
 									<f:setPropertyActionListener
 										target="#{receitaDespesaManagedBean.receitaDespesaSelecionado}"
@@ -131,8 +138,10 @@
 
 			<ui:include src="/pages/dialog/dialog_editar_despesa.xhtml" />
 
+			<ui:include src="/pages/dialog/dialog_editar_receita.xhtml" />
+
 			<ui:include src="/pages/dialog/dialog_excluir_despesa.xhtml" />
-			
+
 			<ui:include src="/pages/dialog/dialog_excluir_receita.xhtml" />
 
 		</div>

@@ -7,11 +7,11 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:dialog id="idDialogEditDespesa" header="Editar Despesa"
-	widgetVar="dialogEditDespesa" dynamic="true" modal="true"
+<p:dialog id="idDialogEditReceita" header="Editar Receita"
+	widgetVar="dialogEditReceita" dynamic="true" modal="true"
 	appendTo="@(body)" resizable="false" width="502">
 
-	<h:form id="frmDialogEditDespesa">
+	<h:form id="frmDialogEditReceita">
 		<p:panelGrid style="width: 100%;" styleClass="tableBorderNone">
 			<p:row>
 				<p:column>
@@ -21,8 +21,8 @@
 					<p:selectOneMenu
 						value="#{receitaDespesaManagedBean.receitaDespesaSelecionado.titulo}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems itemLabel="#{conta.nome}" itemValue="#{conta.nome}"
-							value="#{receitaDespesaManagedBean.listaContas}" var="conta" />
+						<f:selectItems itemLabel="#{serv.nome}" itemValue="#{serv.nome}"
+							value="#{receitaDespesaManagedBean.listaServicos}" var="serv" />
 					</p:selectOneMenu>
 				</p:column>
 			</p:row>
@@ -63,12 +63,12 @@
 				<p:column colspan="2">
 					<div align="right">
 						<p:commandButton value="Cancelar" type="button"
-							onclick="PF('dialogEditDespesa').hide()" />
+							onclick="PF('dialogEditReceita').hide()" />
 						<p:commandButton value="OK"
 							actionListener="#{receitaDespesaManagedBean.editarReceitaDespesa}"
-							update=":frmDialogEditDespesa :idTabView:frmDataTableDespesa"
-							oncomplete="if(!args.validationFailed) PF('dialogEditDespesa').hide(); 
-										else PF('dialogEditDespesa').show();" />
+							update=":frmDialogEditReceita :idTabView:frmDataTableReceita"
+							oncomplete="if(!args.validationFailed) PF('dialogEditReceita').hide(); 
+										else PF('dialogEditReceita').show();" />
 					</div>
 				</p:column>
 			</p:row>

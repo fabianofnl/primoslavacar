@@ -26,10 +26,10 @@ public class ReceitaDespesaModelImpl implements ReceitaDespesaModel {
 			.getLogger(ReceitaDespesaModelImpl.class);
 
 	private static final String SELECT_LISTA_TODAS_RECEITAS = "SELECT * FROM fluxocaixa WHERE tipo = 'R' "
-			+ "ORDER BY dataProcessamento";
+			+ "ORDER BY dataProcessamento DESC";
 
 	private static final String SELECT_LISTA_TODAS_DESPESAS = "SELECT * FROM fluxocaixa WHERE tipo = 'D' "
-			+ "ORDER BY dataProcessamento";
+			+ "ORDER BY dataProcessamento DESC";
 
 	private static final String INSERT_DESPESA = "INSERT INTO fluxocaixa (titulo, tipo, dataProcessamento, valor) "
 			+ "VALUES (?, 'D', ?, ?)";
