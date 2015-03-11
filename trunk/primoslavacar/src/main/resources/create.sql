@@ -83,3 +83,71 @@ select to_char(dataProcessamento, 'mm') as mes, dataProcessamento, sum(valor) as
 WHERE tipo = 'R' AND extract (year from dataprocessamento) = 2015
 group by 1, 2
 order by 1
+
+select f.titulo,
+	sum((select sum(f1.valor)
+		from fluxocaixa f1 
+		where  extract (year from dataprocessamento) = 2015 
+		and extract (month from dataprocessamento) = 4 and f1.id = f.id)) as janeiro 
+from fluxocaixa f where f.tipo = 'R'
+group by 1
+
+CREATE OR REPLACE FUNCTION fluxocaixa (tipo VARCHAR(1), ano INTEGER)
+	RETURNS TABLE (titulo VARCHAR(100), janeiro numeric(18,2), fevereiro numeric(18,2), marco numeric(18,2), abril numeric(18,2),
+		maio numeric(18,2), junho numeric(18,2), julho numeric(18,2), agosto numeric(18,2), setembro numeric(18,2),
+			outubro numeric(18,2), novembro numeric(18,2), dezembro numeric(18,2)) AS
+$func$
+SELECT f.titulo,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 1 AND f1.id = f.id)) AS janeiro,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 2 AND f1.id = f.id)) AS fevereiro,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 3 AND f1.id = f.id)) AS marco,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 4 AND f1.id = f.id)) AS abril,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 5 AND f1.id = f.id)) AS maio,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 6 AND f1.id = f.id)) AS junho,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 7 AND f1.id = f.id)) AS julho,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 8 AND f1.id = f.id)) AS agosto,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 9 AND f1.id = f.id)) AS setembro,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 10 AND f1.id = f.id)) AS outubro,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2 
+		AND EXTRACT (MONTH FROM dataprocessamento) = 11 AND f1.id = f.id)) AS novembro,
+	sum((SELECT sum(f1.valor)
+		FROM fluxocaixa f1 
+		WHERE  EXTRACT (YEAR FROM dataprocessamento) = $2
+		AND EXTRACT (MONTH FROM dataprocessamento) = 12 AND f1.id = f.id)) AS dezembro
+FROM fluxocaixa f WHERE f.tipo = $1
+GROUP BY 1 ORDER BY 1
+$func$ LANGUAGE sql;
+
+select * from fluxocaixa('D', 2015);
