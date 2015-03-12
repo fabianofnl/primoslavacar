@@ -18,390 +18,567 @@
 				Fluxo de Caixa
 				<p:separator />
 			</div>
-			<!-- 
+
 			<h:form id="frmRemoteCommand">
 				<p:remoteCommand name="onloadTabela"
-					actionListener="#{relatorioManagedBean.carregarTabela}"
-					autoRun="true" update=":frmRelatorioFluxoCaixa:relatorioFluxoCaixa1 :frmRelatorioFluxoCaixa:relatorioFluxoCaixa2" />
+					actionListener="#{fluxoCaixaManagedBean.carregarTabela}"
+					autoRun="true"
+					update=":frmFluxoCaixa:barChart :frmFluxoCaixa:dataTableReceita :frmFluxoCaixa:fluxoCaixaTotaisReceitas :frmFluxoCaixa:fluxoCaixaSaldoTotal :frmFluxoCaixa:dataTableDespesa :frmFluxoCaixa:fluxoCaixaTotaisDespesas :frmFluxoCaixa:selectAnoBase" />
 			</h:form>
- -->
 
-			<h:form id="frmRelatorioFluxoCaixa">
+
+			<h:form id="frmFluxoCaixa">
 				<p:panelGrid columns="3" styleClass="tableBorderNone"
-					style="width: 310px;">
+					style="width: 320px; font-size: 13px;">
 
 					<h:outputLabel value="Filtro do ano base:" />
 
-					<p:selectOneMenu required="true"
+					<p:selectOneMenu required="true" id="selectAnoBase"
+						value="#{fluxoCaixaManagedBean.anoBase}"
 						requiredMessage="O campo filtro do ano base é obrigatório.">
-						<f:selectItem itemLabel="2014" itemValue="2014" />
-						<f:selectItem itemLabel="2015" itemValue="2015" />
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{fluxoCaixaManagedBean.listaAnoBase}"
+							var="anoB" itemLabel="#{anoB}" itemValue="#{anoB}" />
 					</p:selectOneMenu>
 
-					<p:commandButton value="OK" update="frmRelatorioFluxoCaixa" />
+					<p:commandButton value="OK"
+						actionListener="#{fluxoCaixaManagedBean.carregarTabela}"
+						update=":frmFluxoCaixa:dataTableReceita :frmFluxoCaixa:fluxoCaixaTotaisReceitas :frmFluxoCaixa:fluxoCaixaSaldoTotal :frmFluxoCaixa:dataTableDespesa :frmFluxoCaixa:fluxoCaixaTotaisDespesas :frmFluxoCaixa:selectAnoBase" />
 				</p:panelGrid>
-				<br/>
-				<p:panelGrid styleClass="tableBorderNone">
-					<h:outputLabel style="font-size: 15px;font-weight: bold;" value="1º Semestre"/>
-				</p:panelGrid>
-				<br/>
-				<p:panelGrid id="relatorioFluxoCaixa1" style="width: 100%;">
-					<p:row>
-						<p:column style="width: 22%;"/>
-						<p:column style="width: 13%;"><strong>JANEIRO</strong></p:column>
-						<p:column style="width: 13%;"><strong>FEVEREIRO</strong></p:column>
-						<p:column style="width: 13%;"><strong>MARÇO</strong></p:column>
-						<p:column style="width: 13%;"><strong>ABRIL</strong></p:column>
-						<p:column style="width: 13%;"><strong>MAIO</strong></p:column>
-						<p:column style="width: 13%;"><strong>JUNHO</strong></p:column>
-					</p:row>
+				<br />
+				<p:dataTable id="dataTableReceita" style="font-size: 12px;"
+					value="#{fluxoCaixaManagedBean.listaFluxosCaixaReceita}"
+					var="fluxoCaixaRec"
+					emptyMessage="Não existem informações para o ano base selecionado.">
+
+					<p:column headerText="Receita" width="250">
+						<h:outputText value="#{fluxoCaixaRec.titulo}" />
+					</p:column>
+
+					<p:column headerText="Janeiro" width="100">
+						<h:outputText value="#{fluxoCaixaRec.janeiro}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Fevereiro" width="100">
+						<h:outputText value="#{fluxoCaixaRec.fevereiro}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Março" width="100">
+						<h:outputText value="#{fluxoCaixaRec.marco}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Abril" width="100">
+						<h:outputText value="#{fluxoCaixaRec.abril}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Maio" width="100">
+						<h:outputText value="#{fluxoCaixaRec.maio}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Junho" width="100">
+						<h:outputText value="#{fluxoCaixaRec.junho}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Julho" width="100">
+						<h:outputText value="#{fluxoCaixaRec.julho}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Agosto" width="100">
+						<h:outputText value="#{fluxoCaixaRec.agosto}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Setembro" width="100">
+						<h:outputText value="#{fluxoCaixaRec.setembro}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Outubro" width="100">
+						<h:outputText value="#{fluxoCaixaRec.outubro}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Novembro" width="100">
+						<h:outputText value="#{fluxoCaixaRec.novembro}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Dezembro" width="100">
+						<h:outputText value="#{fluxoCaixaRec.dezembro}">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+				</p:dataTable>
+
+				<p:panelGrid id="fluxoCaixaTotaisReceitas"
+					style="width: 100%; table-layout: fixed; font-size: 12px; font-weight: bold;">
 
 					<p:row>
-						<p:column>Serviços</p:column>
-						<p:column>R$ 200,00</p:column>
-						<p:column>R$ 300,00</p:column>
-						<p:column>R$ 250,00</p:column>
-						<p:column>R$ 100,00</p:column>
-						<p:column>R$ 230,00</p:column>
-						<p:column>R$ 210,00</p:column>
-					</p:row>
+						<p:column style="width: 250px; background-color: #8181F7;">
+							<h:outputText value="I - TOTAIS DAS ENTRADAS" />
+						</p:column>
 
-					<p:row>
-						<p:column>
-							<strong>I - TOTAIS DAS ENTRADAS</strong>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaJaneiro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 200,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaFevereiro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 300,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaMarco}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 250,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaAbril}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 100,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaMaio}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 230,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaJunho}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 210,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaJulho}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaAgosto}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaSetembro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaOutubro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaNovembro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								value="#{fluxoCaixaManagedBean.totalizador.receitaDezembro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
 					</p:row>
 				</p:panelGrid>
 				<br />
-				<p:panelGrid style="width: 100%;">
-					<p:row>
-						<p:column style="width: 22%;">Despesa Material de Limpeza</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-					</p:row>
+				<p:dataTable id="dataTableDespesa" style="font-size: 12px;"
+					value="#{fluxoCaixaManagedBean.listaFluxosCaixaDespesa}"
+					var="fluxoCaixaDes"
+					emptyMessage="Não existem informações para o ano base selecionado.">
+
+					<p:column headerText="Despesa" width="250">
+						<h:outputText value="#{fluxoCaixaDes.titulo}" />
+					</p:column>
+
+					<p:column headerText="Janeiro" width="100">
+						<h:outputText value="#{fluxoCaixaDes.janeiro}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Fevereiro" width="100">
+						<h:outputText value="#{fluxoCaixaDes.fevereiro}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Março" width="100">
+						<h:outputText value="#{fluxoCaixaDes.marco}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Abril" width="100">
+						<h:outputText value="#{fluxoCaixaDes.abril}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Maio" width="100">
+						<h:outputText value="#{fluxoCaixaDes.maio}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Junho" width="100">
+						<h:outputText value="#{fluxoCaixaDes.junho}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Julho" width="100">
+						<h:outputText value="#{fluxoCaixaDes.julho}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Agosto" width="100">
+						<h:outputText value="#{fluxoCaixaDes.agosto}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Setembro" width="100">
+						<h:outputText value="#{fluxoCaixaDes.setembro}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Outubro" width="100">
+						<h:outputText value="#{fluxoCaixaDes.outubro}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Novembro" width="100">
+						<h:outputText value="#{fluxoCaixaDes.novembro}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Dezembro" width="100">
+						<h:outputText value="#{fluxoCaixaDes.dezembro}"
+							style="color: #F5A9A9;">
+							<f:convertNumber currencySymbol="R$ " type="currency"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+				</p:dataTable>
+
+
+				<p:panelGrid id="fluxoCaixaTotaisDespesas"
+					style="width: 100%; table-layout: fixed; font-size: 12px; font-weight: bold;">
 
 					<p:row>
-						<p:column>Despesa Energia Elétrica</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-					</p:row>
+						<p:column style="width: 250px; background-color: #8181F7;">
+							<h:outputText value="II - TOTAIS DAS SAÍDAS" />
+						</p:column>
 
-					<p:row>
-						<p:column>Despesa Água e Esgoto</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-					</p:row>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaJaneiro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
 
-					<p:row>
-						<p:column>Despesa Telefone/Internet</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-					</p:row>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaFevereiro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
 
-					<p:row>
-						<p:column>Despesa Aluguéis</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-					</p:row>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaMarco}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
 
-					<p:row>
-						<p:column>
-							<strong>II - TOTAIS DAS SAÍDAS</strong>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaAbril}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 200,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaMaio}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 300,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaJunho}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 250,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaJulho}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 100,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaAgosto}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 230,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaSetembro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 210,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaOutubro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaNovembro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText style="color: #F5A9A9;"
+								value="#{fluxoCaixaManagedBean.totalizador.despesaDezembro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
 					</p:row>
 				</p:panelGrid>
-				<br/>
-				<p:panelGrid style="width: 100%;">
-					<p:row>
-						<p:column style="width: 22%;">
-							<strong>III - RESULTADO OPERACIONAL</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-					</p:row>
 
-					<p:row>
-						<p:column colspan="13" />
-					</p:row>
-
-					<p:row>
-						<p:column>
-							<strong>IV - SALDO FINAL DE CAIXA</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
-						</p:column>
-					</p:row>
-
-				</p:panelGrid>
-				<br/>
-				<br/>
-				<p:panelGrid styleClass="tableBorderNone">
-					<h:outputLabel style="font-size: 14px;font-weight: bold;" value="2º Semestre"/>
-				</p:panelGrid>
-				<br/>
-				<p:panelGrid id="relatorioFluxoCaixa2" style="width: 100%;">
-					<p:row>
-						<p:column style="width: 22%;"/>
-						<p:column style="width: 13%;"><strong>JULHO</strong></p:column>
-						<p:column style="width: 13%;"><strong>AGOSTO</strong></p:column>
-						<p:column style="width: 13%;"><strong>SETEMBRO</strong></p:column>
-						<p:column style="width: 13%;"><strong>OUTUBRO</strong></p:column>
-						<p:column style="width: 13%;"><strong>NOVEMBRO</strong></p:column>
-						<p:column style="width: 13%;"><strong>DEZEMBRO</strong></p:column>
-					</p:row>
-
-					<p:row>
-						<p:column>Serviços</p:column>
-						<p:column>R$ 240,00</p:column>
-						<p:column>R$ 330,00</p:column>
-						<p:column>R$ 500,00</p:column>
-						<p:column>R$ 330,00</p:column>
-						<p:column>R$ 400,00</p:column>
-						<p:column>R$ 300,00</p:column>
-					</p:row>
-
-					<p:row>
-						<p:column>
-							<strong>I - TOTAIS DAS ENTRADAS</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 240,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 330,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 500,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 330,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 400,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 300,00</strong>
-						</p:column>
-					</p:row>
-				</p:panelGrid>
 				<br />
-				<p:panelGrid style="width: 100%;">
-					<p:row>
-						<p:column style="width: 22%;">Despesa Material de Limpeza</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-						<p:column style="width: 13%;">R$ 50,00</p:column>
-					</p:row>
+
+				<p:panelGrid id="fluxoCaixaSaldoTotal"
+					style="width: 100%; table-layout: fixed; font-size: 12px; font-weight: bold;">
 
 					<p:row>
-						<p:column>Despesa Energia Elétrica</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-					</p:row>
+						<p:column style="width: 250px; background-color: #8181F7;">
+							<h:outputText value="III - SALDO FINAL DE CAIXA" />
+						</p:column>
 
-					<p:row>
-						<p:column>Despesa Água e Esgoto</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-					</p:row>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaJaneiro - fluxoCaixaManagedBean.totalizador.despesaJaneiro lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaJaneiro - fluxoCaixaManagedBean.totalizador.despesaJaneiro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
 
-					<p:row>
-						<p:column>Despesa Telefone/Internet</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-					</p:row>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaFevereiro - fluxoCaixaManagedBean.totalizador.despesaFevereiro lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaFevereiro - fluxoCaixaManagedBean.totalizador.despesaFevereiro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
 
-					<p:row>
-						<p:column>Despesa Aluguéis</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-						<p:column>R$ 50,00</p:column>
-					</p:row>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaMarco - fluxoCaixaManagedBean.totalizador.despesaMarco lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaMarco - fluxoCaixaManagedBean.totalizador.despesaMarco}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
 
-					<p:row>
-						<p:column>
-							<strong>II - TOTAIS DAS SAÍDAS</strong>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaAbril - fluxoCaixaManagedBean.totalizador.despesaAbril lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaAbril - fluxoCaixaManagedBean.totalizador.despesaAbril}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 240,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 330,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 500,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 330,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 400,00</strong>
-						</p:column>
-						<p:column>
-							<strong>R$ 300,00</strong>
-						</p:column>
-					</p:row>
-				</p:panelGrid>
-				<br/>
-				<p:panelGrid style="width: 100%;">
-					<p:row>
-						<p:column style="width: 22%;">
-							<strong>III - RESULTADO OPERACIONAL</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-						<p:column style="width: 13%;">
-							<strong>R$ 0,00</strong>
-						</p:column>
-					</p:row>
 
-					<p:row>
-						<p:column colspan="13" />
-					</p:row>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaMaio - fluxoCaixaManagedBean.totalizador.despesaMaio lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaMaio - fluxoCaixaManagedBean.totalizador.despesaMaio}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
+						</p:column>
 
-					<p:row>
-						<p:column>
-							<strong>IV - SALDO FINAL DE CAIXA</strong>
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaJunho - fluxoCaixaManagedBean.totalizador.despesaJunho lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaJunho - fluxoCaixaManagedBean.totalizador.despesaJunho}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaJulho - fluxoCaixaManagedBean.totalizador.despesaJulho lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaJulho - fluxoCaixaManagedBean.totalizador.despesaJulho}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaAgosto - fluxoCaixaManagedBean.totalizador.despesaAgosto lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaAgosto - fluxoCaixaManagedBean.totalizador.despesaAgosto}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaSetembro - fluxoCaixaManagedBean.totalizador.despesaSetembro lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaSetembro - fluxoCaixaManagedBean.totalizador.despesaSetembro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaOutubro - fluxoCaixaManagedBean.totalizador.despesaOutubro lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaOutubro - fluxoCaixaManagedBean.totalizador.despesaOutubro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaNovembro - fluxoCaixaManagedBean.totalizador.despesaNovembro lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaNovembro - fluxoCaixaManagedBean.totalizador.despesaNovembro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
-						<p:column>
-							<strong>R$ 0,00</strong>
+
+						<p:column style="width: 100px; background-color: #8181F7;">
+							<h:outputText
+								style="#{fluxoCaixaManagedBean.totalizador.receitaDezembro - fluxoCaixaManagedBean.totalizador.despesaDezembro lt 0 ? 'color: #F5A9A9;' : ''}"
+								value="#{fluxoCaixaManagedBean.totalizador.receitaDezembro - fluxoCaixaManagedBean.totalizador.despesaDezembro}">
+								<f:convertNumber currencySymbol="R$ " type="currency"
+									locale="pt_BR" />
+							</h:outputText>
 						</p:column>
 					</p:row>
-
 				</p:panelGrid>
 			</h:form>
 		</div>

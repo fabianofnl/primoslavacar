@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author Claudemir
  * 
  */
-public class FluxoCaixa implements Serializable {
+public class FluxoCaixaViewBean implements Serializable {
 
 	private static final long serialVersionUID = -868657873265079009L;
 
@@ -28,7 +28,7 @@ public class FluxoCaixa implements Serializable {
 	private Double dezembro;
 	private Double totalPorTitulo;
 
-	public FluxoCaixa() {
+	public FluxoCaixaViewBean() {
 	}
 
 	public String getTitulo() {
