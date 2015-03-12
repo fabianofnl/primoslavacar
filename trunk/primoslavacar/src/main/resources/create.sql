@@ -150,4 +150,4 @@ FROM fluxocaixa f WHERE f.tipo = $1
 GROUP BY 1 ORDER BY 1
 $func$ LANGUAGE sql;
 
-select * from fluxocaixa('D', 2015);
+SELECT * FROM fluxocaixa('D', 2015);
